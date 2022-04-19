@@ -11,18 +11,11 @@ namespace ChaosRising
         public int angleGap;
         public int minDamage;
         public int maxDamage;
-        public Acceleration acceleration;
+        public KeyValue<float>[] accelerations;
         public Orbit orbit;
         public Burst[] bursts;
-        public Display display = null;
+        public Display display;
         public bool whiplike;
-    }
-
-    [Serializable]
-    public class Acceleration
-    {
-        public Frame<float>[] accelerations;
-        public float offset = 0f;
     }
 
     [Serializable]
@@ -45,20 +38,20 @@ namespace ChaosRising
     {
         public float minSize;
         public float maxSize;
-        public Frame<float>[] sizes;
+        public KeyValue<float>[] sizes;
 
         public Color tint;
-        public Frame<Color>[] colors;
-        public Frame<float>[] alphas;
+        public KeyValue<Color>[] colors;
+        public KeyValue<float>[] alphas;
         public bool blend;
     }
 
     [Serializable]
     public class Color
     {
-        public int red;
-        public int green;
-        public int blue;
+        public float red;
+        public float green;
+        public float blue;
 
         public UnityEngine.Color ToColor()
         {
@@ -67,9 +60,9 @@ namespace ChaosRising
     }
 
     [Serializable]
-    public class Frame<T>
+    public class KeyValue<T>
     {
-        public float time;
+        public float key;
         public T value;
     }
 }
