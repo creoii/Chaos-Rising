@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Components\CameraController.cs" />
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
+    <Compile Include="Assets\Scripts\Components\Living.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -49,8 +49,9 @@ public class ProjectileGenerator : MonoBehaviour
         ParticleSystem.CustomDataModule data = particleSystem.customData;
         data.enabled = true;
         data.SetMode(ParticleSystemCustomData.Custom1, ParticleSystemCustomDataMode.Vector);
-        data.SetVectorComponentCount(ParticleSystemCustomData.Custom1, 1);
+        data.SetVectorComponentCount(ParticleSystemCustomData.Custom1, 2);
         data.SetVector(ParticleSystemCustomData.Custom1, 0, new ParticleSystem.MinMaxCurve(attack.minDamage, attack.maxDamage));
+        data.SetVector(ParticleSystemCustomData.Custom1, 1, new ParticleSystem.MinMaxCurve(attack.armorIgnored, 0f));
         #endregion
 
         #region Main
@@ -110,7 +111,7 @@ public class ProjectileGenerator : MonoBehaviour
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
-        collision.collidesWith = LayerMask.GetMask("Blocking");
+        collision.collidesWith = LayerMask.GetMask("Blocking", "Enemy");
         #endregion
 
         #region GPU & Material

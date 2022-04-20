@@ -11,6 +11,7 @@ namespace ChaosRising
         public int angleGap;
         public int minDamage;
         public int maxDamage;
+        public int armorIgnored;
         public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;

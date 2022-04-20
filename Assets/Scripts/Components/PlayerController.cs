@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D hit;
     private Vector3 movement;
 
-    private BoxCollider2D box;
+    private CircleCollider2D circle;
     private Stats stats;
 
     private void Start()
     {
-        box = GetComponent<BoxCollider2D>();
+        circle = GetComponent<CircleCollider2D>();
         stats = GetComponent<StatContainer>().stats;
     }
 
@@ -29,14 +29,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // collide on y axis
-        hit = Physics2D.BoxCast(transform.position, box.size, 0f, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
         if (hit.collider != null)
         {
             movement.y = 0f;
         }
 
         // collide on z axis
-        hit = Physics2D.BoxCast(transform.position, box.size, 0f, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
         if (hit.collider != null)
         {
             movement.x = 0f;
