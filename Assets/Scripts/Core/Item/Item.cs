@@ -13,7 +13,7 @@ namespace ChaosRising
             this.sprite = sprite;
         }
 
-        public Item(string name) : this(name, name)
+        public Item(string name) : this(name, "Items/" + name)
         {
 
         }

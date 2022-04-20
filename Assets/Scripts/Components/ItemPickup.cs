@@ -1,17 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory))]
 public class ItemPickup : MonoBehaviour
 {
     private Inventory inventory;
 
     private void Start()
     {
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponentInChildren<Inventory>();
     }
 
-    public void Pickup(Transform parent, ItemContainer itemContainer)
+    public void Pickup(ItemContainer itemContainer)
     {
-        inventory.AddItem(parent, itemContainer);
+        inventory.AddItem(inventory.transform, itemContainer);
     }
 }

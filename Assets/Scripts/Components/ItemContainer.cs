@@ -12,6 +12,12 @@ public class ItemContainer : MonoBehaviour
         item = new ChaosRising.Item("inquisition");
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Resources.Load<Sprite>("Textures/Items/" + item.sprite);
+        spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
+    }
+
+    public void SetParent(Transform parent, Vector3 offset)
+    {
+        transform.SetParent(parent);
+        transform.position = parent.position + offset;
     }
 }

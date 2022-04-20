@@ -348,6 +348,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1348175647}
+  - {fileID: 827204845}
+  - {fileID: 1957979406}
   m_Father: {fileID: 1506330231}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -356,6 +358,99 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &827204844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827204845}
+  - component: {fileID: 827204848}
+  - component: {fileID: 827204847}
+  - component: {fileID: 827204846}
+  m_Layer: 5
+  m_Name: Magic Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &827204845
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827204844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 734969950}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 5, y: 135}
+  m_SizeDelta: {x: 100, y: 10}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &827204846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827204844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1508b2bf5d0cfd141a02f07974c47153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSize: {x: 100, y: 10}
+  stat: 1
+  living: {fileID: 0}
+  rectTransform: {fileID: 0}
+--- !u!114 &827204847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827204844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.24985123, g: 0, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &827204848
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827204844}
+  m_CullTransparentMesh: 1
 --- !u!1 &946509978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,11 +4337,11 @@ RectTransform:
   m_Father: {fileID: 734969950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -345, y: 150}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 5, y: 150}
   m_SizeDelta: {x: 100, y: 10}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1348175648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4259,7 +4354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1508b2bf5d0cfd141a02f07974c47153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSize: {x: 0, y: 0}
+  baseSize: {x: 100, y: 10}
+  stat: 0
   living: {fileID: 0}
   rectTransform: {fileID: 0}
 --- !u!114 &1348175649
@@ -4314,7 +4410,6 @@ GameObject:
   - component: {fileID: 1506330232}
   - component: {fileID: 1506330233}
   - component: {fileID: 1506330234}
-  - component: {fileID: 1506330235}
   - component: {fileID: 1506330236}
   m_Layer: 3
   m_Name: Player
@@ -4456,20 +4551,6 @@ MonoBehaviour:
   health: 0
   magic: 0
   stats: {fileID: 0}
---- !u!114 &1506330235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506330228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd1ebbf0b880ec4eacb3a4c5175e42b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 4
-  items: []
 --- !u!114 &1506330236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5784,6 +5865,97 @@ MonoBehaviour:
   health: 0
   magic: 0
   stats: {fileID: 0}
+--- !u!1 &1957979405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957979406}
+  - component: {fileID: 1957979409}
+  - component: {fileID: 1957979408}
+  - component: {fileID: 1957979407}
+  m_Layer: 5
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1957979406
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957979405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 734969950}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1957979407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957979405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: ae489117ec20b6f468902c5f4f340daf, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1957979408
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957979405}
+  m_CullTransparentMesh: 1
+--- !u!114 &1957979409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957979405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd1ebbf0b880ec4eacb3a4c5175e42b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 4
+  items: []
 --- !u!1 &2031481349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5836,6 +6008,7 @@ MonoBehaviour:
     angleGap: 20
     minDamage: 25
     maxDamage: 50
+    startRotation: 0
     armorIgnored: 0
     acceleration:
       accelerations: []
@@ -5881,6 +6054,7 @@ MonoBehaviour:
         angleGap: 40
         minDamage: 0
         maxDamage: 0
+        startRotation: 0
         armorIgnored: 0
         acceleration:
           accelerations: []
@@ -5916,6 +6090,7 @@ MonoBehaviour:
             angleGap: 0
             minDamage: 0
             maxDamage: 0
+            startRotation: 0
             armorIgnored: 0
             acceleration:
               accelerations: []
@@ -5951,6 +6126,7 @@ MonoBehaviour:
                 angleGap: 0
                 minDamage: 0
                 maxDamage: 0
+                startRotation: 0
                 armorIgnored: 0
                 acceleration:
                   accelerations: []
@@ -5986,6 +6162,7 @@ MonoBehaviour:
                     angleGap: 0
                     minDamage: 0
                     maxDamage: 0
+                    startRotation: 0
                     armorIgnored: 0
                     acceleration:
                       accelerations: []
@@ -6021,6 +6198,7 @@ MonoBehaviour:
                         angleGap: 0
                         minDamage: 0
                         maxDamage: 0
+                        startRotation: 0
                         armorIgnored: 0
                       chance: 0
                   chance: 0
@@ -6080,6 +6258,7 @@ MonoBehaviour:
     angleGap: 20
     minDamage: 25
     maxDamage: 50
+    startRotation: -45
     armorIgnored: 0
     acceleration:
       accelerations: []
@@ -6125,6 +6304,7 @@ MonoBehaviour:
         angleGap: 40
         minDamage: 0
         maxDamage: 0
+        startRotation: 0
         armorIgnored: 0
         acceleration:
           accelerations: []
@@ -6160,6 +6340,7 @@ MonoBehaviour:
             angleGap: 0
             minDamage: 0
             maxDamage: 0
+            startRotation: 0
             armorIgnored: 0
             acceleration:
               accelerations: []
@@ -6195,6 +6376,7 @@ MonoBehaviour:
                 angleGap: 0
                 minDamage: 0
                 maxDamage: 0
+                startRotation: 0
                 armorIgnored: 0
                 acceleration:
                   accelerations: []
@@ -6230,6 +6412,7 @@ MonoBehaviour:
                     angleGap: 0
                     minDamage: 0
                     maxDamage: 0
+                    startRotation: 0
                     armorIgnored: 0
                     acceleration:
                       accelerations: []
@@ -6265,6 +6448,7 @@ MonoBehaviour:
                         angleGap: 0
                         minDamage: 0
                         maxDamage: 0
+                        startRotation: 0
                         armorIgnored: 0
                       chance: 0
                   chance: 0

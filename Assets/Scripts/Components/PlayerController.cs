@@ -45,14 +45,28 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
-            movement.y = 0f;
+            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("Item"))
+            {
+                pickup.Pickup(hit.transform.gameObject.GetComponent<ItemContainer>());
+            }
+            else
+            {
+                movement.y = 0f;
+            }
         }
 
         // collide on x axis
         hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
-            movement.x = 0f;
+            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("Item"))
+            {
+                pickup.Pickup(hit.transform.gameObject.GetComponent<ItemContainer>());
+            }
+            else
+            {
+                movement.x = 0f;
+            }
         }
 
         if (movement != Vector3.zero)
