@@ -107,7 +107,7 @@ public class ProjectileGenerator : MonoBehaviour
         collision.enabled = true;
         collision.mode = ParticleSystemCollisionMode.Collision2D;
         collision.type = ParticleSystemCollisionType.World;
-        collision.quality = ParticleSystemCollisionQuality.Medium;
+        collision.quality = ParticleSystemCollisionQuality.High;
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
