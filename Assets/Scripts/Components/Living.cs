@@ -16,19 +16,30 @@ public class Living : MonoBehaviour
         magic = stats.stats.maxMagic;
     }
 
-    public void Damage(int amount, int armorIgnored)
+    private void OnEnable()
     {
-        if (armorIgnored > 0)
+        if (stats != null)
         {
-            if (armorIgnored >= stats.stats.armor) amount += stats.stats.armor;
-            else amount += armorIgnored;
+            health = stats.stats.maxHealth;
+            magic = stats.stats.maxMagic;
         }
+    }
 
-        if (health - amount < 0)
+    public void Damage(int amount)
+    {
+        if (health - amount <= 0)
         {
             Kill();
         }
         else health -= amount;
+    }
+
+    public void Damage(int amount, int armorIgnored)
+    {
+        if (armorIgnored >= stats.stats.armor) amount += stats.stats.armor;
+        else amount += armorIgnored;
+
+        Damage(amount);
     }
 
     private void Kill()

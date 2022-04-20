@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
 
     private CircleCollider2D circle;
     private Stats stats;
+    private ProjectileGenerator projectileGenerator;
 
     private void Start()
     {
         circle = GetComponent<CircleCollider2D>();
         stats = GetComponent<StatContainer>().stats;
+        projectileGenerator = GetComponentInChildren<ProjectileGenerator>();
     }
 
     private void Update()
@@ -24,6 +26,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W)) movement.y = 1;
         if (Input.GetKey(KeyCode.S)) movement.y = -1;
         if (Input.GetKey(KeyCode.D)) movement.x = 1;
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            projectileGenerator.UpdateAttack();
+        }
     }
 
     private void FixedUpdate()

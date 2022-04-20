@@ -259,29 +259,26 @@ public class ProjectileGenerator : MonoBehaviour
         #endregion
     }
 
-    private void Update()
+    public void UpdateAttack()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
+        if ((attackTime -= Time.deltaTime) < 0f)
         {
-            ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
-            if ((attackTime -= Time.deltaTime) < 0f)
+            ParticleSystem.ShapeModule shape;
+            float angle = MouseUtility.GetMouseAngle(transform.position, false);
+            if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1f) / 2f) + 1);
+            for (int i = 0; i < particleSystems.Length; ++i)
             {
-                ParticleSystem.ShapeModule shape;
-                float angle = MouseUtility.GetMouseAngle(transform.position, false);
-                if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1f) / 2f) + 1);
-                for (int i = 0; i < particleSystems.Length; ++i)
+                shape = particleSystems[i].shape;
+                shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
+
+                if (attack.display.maxSize > 0)
                 {
-                    shape = particleSystems[i].shape;
-                    shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
-
-                    if (attack.display.maxSize > 0)
-                    {
-                        emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
-                    }
-
-                    particleSystems[i].Emit(emission, 1);
-                    attackTime = 1f / stats.dexterity;
+                    emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
                 }
+
+                particleSystems[i].Emit(emission, 1);
+                attackTime = 1f / stats.dexterity;
             }
         }
     }
