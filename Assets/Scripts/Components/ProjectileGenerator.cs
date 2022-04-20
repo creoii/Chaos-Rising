@@ -16,7 +16,7 @@ public class ProjectileGenerator : MonoBehaviour
         particleSystems = new ParticleSystem[attack.projectileCount];
         stats = GetComponentInParent<StatContainer>().stats;
 
-        float angle = 0f;
+        float angle = -attack.angleGap;
         if (attack.projectileCount > 1) angle += attack.angleGap * ((attack.projectileCount * .5f) - .5f);
         for (int i = 0; i < attack.projectileCount; ++i)
         {
@@ -106,13 +106,13 @@ public class ProjectileGenerator : MonoBehaviour
         #region Collision
         ParticleSystem.CollisionModule collision = particleSystem.collision;
         collision.enabled = true;
+        collision.mode = ParticleSystemCollisionMode.Collision2D;
         collision.type = ParticleSystemCollisionType.World;
         collision.quality = ParticleSystemCollisionQuality.Medium;
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
-        collision.radiusScale = .1f;
-        collision.collidesWith = LayerMask.GetMask("Living", "Blocking");
+        collision.collidesWith = LayerMask.GetMask("Blocking");
         #endregion
 
         #region GPU & Material
