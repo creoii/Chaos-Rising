@@ -16,18 +16,16 @@ public class ProjectileGenerator : MonoBehaviour
         particleSystems = new ParticleSystem[attack.projectileCount];
         stats = GetComponentInParent<StatContainer>().stats;
 
-        float angle = -attack.angleGap;
-        if (attack.projectileCount > 1) angle += attack.angleGap * ((attack.projectileCount * .5f) - .5f);
         for (int i = 0; i < attack.projectileCount; ++i)
         {
             GameObject obj = new GameObject(name + i);
             obj.transform.parent = transform;
-            CreateGenerator(i, attack, obj.AddComponent<ParticleSystem>(), angle -= attack.angleGap, false);
+            CreateGenerator(i, attack, obj.AddComponent<ParticleSystem>(), false);
         }
     }
 
     [System.Obsolete]
-    private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, float startAngle, bool sub)
+    private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, bool sub)
     {
         if (!sub) particleSystems[index] = particleSystem;
 
@@ -168,13 +166,13 @@ public class ProjectileGenerator : MonoBehaviour
         velocityOverLifetime.enabled = true;
         velocityOverLifetime.space = ParticleSystemSimulationSpace.World;
 
-        KeyValue<float>[] accelerations = attack.accelerations;
+        KeyValue<float>[] accelerations = attack.acceleration.accelerations;
         Keyframe[] accKeyFrame = new Keyframe[accelerations.Length];
         if (accelerations.Length > 0)
         {
-            for (int i = 0; i < attack.accelerations.Length; ++i)
+            for (int i = 0; i < attack.acceleration.accelerations.Length; ++i)
             {
-                KeyValue<float> kv = attack.accelerations[i];
+                KeyValue<float> kv = attack.acceleration.accelerations[i];
                 accKeyFrame[i] = new Keyframe(kv.key, kv.value);
             }
         }
@@ -187,6 +185,15 @@ public class ProjectileGenerator : MonoBehaviour
         }
         
         velocityOverLifetime.speedModifier = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(accKeyFrame));
+
+        if (attack.acceleration.max >= 0f)
+        {
+            ParticleSystem.LimitVelocityOverLifetimeModule limitVelocityOverLifetime = particleSystem.limitVelocityOverLifetime;
+            limitVelocityOverLifetime.enabled = true;
+            limitVelocityOverLifetime.space = ParticleSystemSimulationSpace.World;
+
+            limitVelocityOverLifetime.limit = attack.acceleration.max;
+        }
         #endregion
 
         #region Arc
@@ -242,7 +249,7 @@ public class ProjectileGenerator : MonoBehaviour
             obj.transform.parent = transform.GetChild(index);
 
             ParticleSystem subSystem = obj.AddComponent<ParticleSystem>();
-            CreateGenerator(-1, attack.deathEmission.attack, subSystem, startAngle, true);
+            CreateGenerator(-1, attack.deathEmission.attack, subSystem, true);
 
             ParticleSystem.SubEmittersModule subEmitters = particleSystem.subEmitters;
             subEmitters.enabled = true;
@@ -259,10 +266,12 @@ public class ProjectileGenerator : MonoBehaviour
             if ((attackTime -= Time.deltaTime) < 0f)
             {
                 ParticleSystem.ShapeModule shape;
+                float angle = MouseUtility.GetMouseAngle(transform.position, false);
+                if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1f) / 2f) + 1);
                 for (int i = 0; i < particleSystems.Length; ++i)
                 {
                     shape = particleSystems[i].shape;
-                    shape.rotation = new Vector3(0f, MouseUtility.GetMouseAngle(transform.position, false) + (attack.angleGap * i), 0f);
+                    shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
 
                     if (attack.display.maxSize > 0)
                     {

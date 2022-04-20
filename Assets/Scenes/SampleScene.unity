@@ -4274,7 +4274,7 @@ GameObject:
   - component: {fileID: 1750181229}
   - component: {fileID: 1750181228}
   - component: {fileID: 1750181227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5356,17 +5356,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack:
-    lifetime: 5
-    speed: 2
+    lifetime: 2
+    speed: 1.5
     projectileCount: 2
     angleGap: 20
     minDamage: 75
     maxDamage: 100
-    accelerations:
-    - key: 0
-      value: 1
-    - key: 0.45
-      value: -0.3
+    acceleration:
+      accelerations: []
+      max: 0
     orbit:
       speed: 0
       radial: 0
@@ -5407,11 +5405,9 @@ MonoBehaviour:
         angleGap: 40
         minDamage: 0
         maxDamage: 0
-        accelerations:
-        - key: 0
-          value: 1
-        - key: 0.75
-          value: -0.5
+        acceleration:
+          accelerations: []
+          max: 0
         orbit:
           speed: 0.5
           radial: 1
@@ -5442,7 +5438,9 @@ MonoBehaviour:
             angleGap: 0
             minDamage: 0
             maxDamage: 0
-            accelerations: []
+            acceleration:
+              accelerations: []
+              max: 0
             orbit:
               speed: 0
               radial: 0
@@ -5473,7 +5471,9 @@ MonoBehaviour:
                 angleGap: 0
                 minDamage: 0
                 maxDamage: 0
-                accelerations: []
+                acceleration:
+                  accelerations: []
+                  max: 0
                 orbit:
                   speed: 0
                   radial: 0
@@ -5504,7 +5504,9 @@ MonoBehaviour:
                     angleGap: 0
                     minDamage: 0
                     maxDamage: 0
-                    accelerations: []
+                    acceleration:
+                      accelerations: []
+                      max: 0
                     orbit:
                       speed: 0
                       radial: 0

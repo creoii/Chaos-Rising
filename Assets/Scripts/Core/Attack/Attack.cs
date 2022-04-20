@@ -11,7 +11,7 @@ namespace ChaosRising
         public int angleGap;
         public int minDamage;
         public int maxDamage;
-        public KeyValue<float>[] accelerations;
+        public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;
         public Arc arc;
@@ -19,6 +19,13 @@ namespace ChaosRising
         public Display display;
         public DeathEmission deathEmission;
         public float inheritedVelocity;
+    }
+
+    [Serializable]
+    public class Acceleration
+    {
+        public KeyValue<float>[] accelerations;
+        public float max;
     }
 
     [Serializable]
