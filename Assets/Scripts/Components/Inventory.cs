@@ -6,16 +6,13 @@ public class Inventory : MonoBehaviour
 {
     public int size;
 
-    public Image[] slots;
     public List<ItemContainer> items;
 
     private void Start()
     {
-        slots = new Image[size];
         items = new List<ItemContainer>();
         for (int i = 0; i < size; ++i)
         {
-            slots[i] = transform.GetChild(i).GetComponent<Image>();
             items.Add(null);
         }
     }
@@ -29,8 +26,7 @@ public class Inventory : MonoBehaviour
     {
         if (index >= 0 && index < items.Count)
         {
-            item.SetParent(parent, Vector3.zero);
-            SpriteUtility.SetSprite(slots[index], "Textures/" + item.item.sprite);
+            // item.SetParent(parent, Vector3.zero);
             return items[index] = item;
         }
         return item;
@@ -42,8 +38,7 @@ public class Inventory : MonoBehaviour
         {
             if (items[i] == null)
             {
-                item.SetParent(parent, Vector3.zero);
-                SpriteUtility.SetSprite(slots[i], "Textures/" + item.item.sprite);
+                // item.SetParent(parent, Vector3.zero);
                 items[i] = item;
             }
         }

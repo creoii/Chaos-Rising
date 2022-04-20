@@ -4,6 +4,7 @@ using UnityEngine;
 public class ItemContainer : MonoBehaviour
 {
     public ChaosRising.Item item;
+    public bool draggable = false;
 
     private SpriteRenderer spriteRenderer;
 
@@ -13,6 +14,22 @@ public class ItemContainer : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
+    }
+
+    private void OnMouseDrag()
+    {
+        if (draggable)
+        {
+            transform.position = ChaosRising.MouseUtility.GetMousePosition();
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        if (draggable)
+        {
+            draggable = false;
+        }
     }
 
     public void SetParent(Transform parent, Vector3 offset)

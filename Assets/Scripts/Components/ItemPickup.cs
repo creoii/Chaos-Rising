@@ -11,6 +11,7 @@ public class ItemPickup : MonoBehaviour
 
     public void Pickup(ItemContainer itemContainer)
     {
+        itemContainer.draggable = true;
         inventory.AddItem(inventory.transform, itemContainer);
     }
 }
