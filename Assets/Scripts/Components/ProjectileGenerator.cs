@@ -22,14 +22,14 @@ public class ProjectileGenerator : MonoBehaviour
         {
             GameObject obj = new GameObject(name + i);
             obj.transform.parent = transform;
-            CreateGenerator(i, obj.AddComponent<ParticleSystem>(), angle -= attack.angleGap);
+            CreateGenerator(i, attack, obj.AddComponent<ParticleSystem>(), angle -= attack.angleGap, false);
         }
     }
 
     [System.Obsolete]
-    private void CreateGenerator(int index, ParticleSystem particleSystem, float startAngle)
+    private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, float startAngle, bool sub)
     {
-        particleSystems[index] = particleSystem;
+        if (!sub) particleSystems[index] = particleSystem;
 
         particleSystem.transform.position = Vector3.back;
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
@@ -39,22 +39,34 @@ public class ProjectileGenerator : MonoBehaviour
         particleSystem.startSpeed = attack.speed;
         particleSystem.startLifetime = attack.lifetime;
 
+        #region Tint
         UnityEngine.Color tint = attack.display.tint.ToColor();
         if (tint != UnityEngine.Color.white)
         {
             particleSystem.startColor = tint;
         }
+        #endregion
 
+        #region Damage
         ParticleSystem.CustomDataModule data = particleSystem.customData;
         data.enabled = true;
         data.SetMode(ParticleSystemCustomData.Custom1, ParticleSystemCustomDataMode.Vector);
         data.SetVectorComponentCount(ParticleSystemCustomData.Custom1, 1);
         data.SetVector(ParticleSystemCustomData.Custom1, 0, new ParticleSystem.MinMaxCurve(attack.minDamage, attack.maxDamage));
+        #endregion
 
+        #region Main
         ParticleSystem.MainModule main = particleSystem.main;
         main.emitterVelocityMode = ParticleSystemEmitterVelocityMode.Transform;
         main.simulationSpace = ParticleSystemSimulationSpace.World;
+        #endregion
 
+        #region Inherit
+        ParticleSystem.InheritVelocityModule inheritVelocity = particleSystem.inheritVelocity;
+        inheritVelocity.curveMultiplier = attack.inheritedVelocity;
+        #endregion
+
+        #region Emission
         ParticleSystem.EmissionModule emission = particleSystem.emission;
         emission.rate = 0f;
         ParticleSystem.Burst[] bursts = new ParticleSystem.Burst[attack.bursts.Length];
@@ -67,17 +79,31 @@ public class ProjectileGenerator : MonoBehaviour
             bursts[i].repeatInterval = attack.bursts[i].interval;
         }
         emission.SetBursts(bursts);
-        
+        #endregion
+
+        #region Shape
         ParticleSystem.ShapeModule shape = particleSystem.shape;
         shape.shapeType = ParticleSystemShapeType.Cone;
-        shape.angle = 0;
+        shape.angle = 0f;
         shape.radius = 0f;
+        
+        if (attack.pingPong.width > 0f)
+        {
+            shape.arcMode = ParticleSystemShapeMultiModeValue.PingPong;
+            shape.radius = attack.pingPong.width;
+            shape.arcSpeed = attack.pingPong.speed;
+            shape.arcSpread = attack.pingPong.spread;
+        }
+        #endregion
 
+        #region Texture Sheet Animation
         ParticleSystem.TextureSheetAnimationModule textureSheetAnimation = particleSystem.textureSheetAnimation;
         textureSheetAnimation.enabled = true;
         textureSheetAnimation.mode = ParticleSystemAnimationMode.Sprites;
         textureSheetAnimation.AddSprite(Resources.Load<Sprite>("Sprites/Projectiles/fire_bolt"));
+        #endregion
 
+        #region Collision
         ParticleSystem.CollisionModule collision = particleSystem.collision;
         collision.enabled = true;
         collision.type = ParticleSystemCollisionType.World;
@@ -87,39 +113,46 @@ public class ProjectileGenerator : MonoBehaviour
         collision.sendCollisionMessages = true;
         collision.radiusScale = .1f;
         collision.collidesWith = LayerMask.GetMask("Living", "Blocking");
+        #endregion
 
+        #region GPU & Material
         ParticleSystemRenderer renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.sharedMaterial = Resources.Load<Material>("Materials/Sprites");
+        renderer.enableGPUInstancing = true;
+        #endregion
 
-        if (attack.display.sizes.Length > 0)
+        #region Size Over Time
+        if (attack.display.sizeOverTime.Length > 0)
         {
             ParticleSystem.SizeOverLifetimeModule sizeOverLifetime = particleSystem.sizeOverLifetime;
             sizeOverLifetime.enabled = true;
-            Keyframe[] sizes = new Keyframe[attack.display.sizes.Length];
-            for (int i = 0; i < attack.display.sizes.Length; ++i)
+            Keyframe[] sizes = new Keyframe[attack.display.sizeOverTime.Length];
+            for (int i = 0; i < attack.display.sizeOverTime.Length; ++i)
             {
-                KeyValue<float> kv = attack.display.sizes[i];
+                KeyValue<float> kv = attack.display.sizeOverTime[i];
                 sizes[i] = new Keyframe(kv.key, kv.value);
             }
             sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(sizes));
         }
-        
-        if (attack.display.colors.Length > 0)
+        #endregion
+
+        #region Color Over Time
+        if (attack.display.colorOverTime.Length > 0)
         {
             ParticleSystem.ColorOverLifetimeModule colorOverLifetime = particleSystem.colorOverLifetime;
             colorOverLifetime.enabled = true;
 
-            GradientColorKey[] colors = new GradientColorKey[attack.display.colors.Length];
-            for (int i = 0; i < attack.display.colors.Length; ++i)
+            GradientColorKey[] colors = new GradientColorKey[attack.display.colorOverTime.Length];
+            for (int i = 0; i < attack.display.colorOverTime.Length; ++i)
             {
-                KeyValue<ChaosRising.Color> kv = attack.display.colors[i];
+                KeyValue<ChaosRising.Color> kv = attack.display.colorOverTime[i];
                 colors[i] = new GradientColorKey(kv.value.ToColor(), kv.key);
             }
 
-            GradientAlphaKey[] alphas = new GradientAlphaKey[attack.display.alphas.Length];
-            for (int i = 0; i < attack.display.alphas.Length; ++i)
+            GradientAlphaKey[] alphas = new GradientAlphaKey[attack.display.alphaOverTime.Length];
+            for (int i = 0; i < attack.display.alphaOverTime.Length; ++i)
             {
-                KeyValue<float> kv = attack.display.alphas[i];
+                KeyValue<float> kv = attack.display.alphaOverTime[i];
                 alphas[i] = new GradientAlphaKey(kv.value, kv.key);
             }
 
@@ -128,7 +161,9 @@ public class ProjectileGenerator : MonoBehaviour
             gradient.SetKeys(colors, alphas);
             colorOverLifetime.color = new ParticleSystem.MinMaxGradient(gradient);
         }
+        #endregion
 
+        #region Acceleration
         ParticleSystem.VelocityOverLifetimeModule velocityOverLifetime = particleSystem.velocityOverLifetime;
         velocityOverLifetime.enabled = true;
         velocityOverLifetime.space = ParticleSystemSimulationSpace.World;
@@ -152,9 +187,68 @@ public class ProjectileGenerator : MonoBehaviour
         }
         
         velocityOverLifetime.speedModifier = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(accKeyFrame));
+        #endregion
 
+        #region Arc
+        if (attack.arc.xVelocities.Length > 0)
+        {
+            Keyframe[] xVelocities = new Keyframe[attack.arc.xVelocities.Length];
+            for (int i = 0; i < attack.arc.xVelocities.Length; ++i)
+            {
+                KeyValue<float> kv = attack.arc.xVelocities[i];
+                xVelocities[i] = new Keyframe(kv.key, kv.value);
+            }
+            velocityOverLifetime.x = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(xVelocities));
+        }
+        else
+        {
+            velocityOverLifetime.x = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
+            {
+                new Keyframe(0f, 0f)
+            }));
+        }
+
+        if (attack.arc.yVelocities.Length > 0)
+        {
+            Keyframe[] yVelocities = new Keyframe[attack.arc.yVelocities.Length];
+            for (int i = 0; i < attack.arc.yVelocities.Length; ++i)
+            {
+                KeyValue<float> kv = attack.arc.yVelocities[i];
+                yVelocities[i] = new Keyframe(kv.key, kv.value);
+            }
+            velocityOverLifetime.y = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(yVelocities));
+        }
+        else
+        {
+            velocityOverLifetime.y = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
+            {
+                new Keyframe(0f, 0f)
+            }));
+        }
+
+        velocityOverLifetime.z = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
+        {
+            new Keyframe(0f, 0f)
+        }));
+        #endregion
+
+        #region Orbit
         velocityOverLifetime.orbitalYMultiplier = attack.orbit.speed;
         if (attack.orbit.radial) velocityOverLifetime.radial = 1;
+
+        if (attack.deathEmission.attack != null && !sub)
+        {
+            GameObject obj = new GameObject(name + "_subEmitter");
+            obj.transform.parent = transform.GetChild(index);
+
+            ParticleSystem subSystem = obj.AddComponent<ParticleSystem>();
+            CreateGenerator(-1, attack.deathEmission.attack, subSystem, startAngle, true);
+
+            ParticleSystem.SubEmittersModule subEmitters = particleSystem.subEmitters;
+            subEmitters.enabled = true;
+            subEmitters.AddSubEmitter(subSystem, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing, attack.deathEmission.chance);
+        }
+        #endregion
     }
 
     private void Update()

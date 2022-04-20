@@ -14,8 +14,11 @@ namespace ChaosRising
         public KeyValue<float>[] accelerations;
         public Orbit orbit;
         public Burst[] bursts;
+        public Arc arc;
+        public PingPong pingPong;
         public Display display;
-        public bool whiplike;
+        public DeathEmission deathEmission;
+        public float inheritedVelocity;
     }
 
     [Serializable]
@@ -34,15 +37,30 @@ namespace ChaosRising
     }
 
     [Serializable]
+    public class Arc
+    {
+        public KeyValue<float>[] xVelocities;
+        public KeyValue<float>[] yVelocities;
+    }
+
+    [Serializable]
+    public class PingPong
+    {
+        public float width;
+        public float speed;
+        public float spread;
+    }
+
+    [Serializable]
     public class Display
     {
         public float minSize;
         public float maxSize;
-        public KeyValue<float>[] sizes;
+        public KeyValue<float>[] sizeOverTime;
 
         public Color tint;
-        public KeyValue<Color>[] colors;
-        public KeyValue<float>[] alphas;
+        public KeyValue<Color>[] colorOverTime;
+        public KeyValue<float>[] alphaOverTime;
         public bool blend;
     }
 
@@ -57,6 +75,13 @@ namespace ChaosRising
         {
             return new UnityEngine.Color(red, green, blue);
         }
+    }
+
+    [Serializable]
+    public class DeathEmission
+    {
+        public Attack attack;
+        public float chance;
     }
 
     [Serializable]
