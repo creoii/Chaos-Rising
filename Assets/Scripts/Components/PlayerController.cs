@@ -4,6 +4,7 @@ using ChaosRising;
 public class PlayerController : MonoBehaviour
 {
     private static readonly Vector3 faceleft = new Vector3(-1, 1, 1);
+    private static LayerMask fullMask, collisionMask;
 
     private RaycastHit2D hit;
     private Vector3 movement;
@@ -11,12 +12,17 @@ public class PlayerController : MonoBehaviour
     private CircleCollider2D circle;
     private Stats stats;
     private ProjectileGenerator projectileGenerator;
+    private ItemPickup pickup;
 
     private void Start()
     {
+        fullMask = LayerMask.GetMask("Living", "Blocking", "Item");
+        collisionMask = LayerMask.GetMask("Living", "Blocking");
+
         circle = GetComponent<CircleCollider2D>();
         stats = GetComponent<StatContainer>().stats;
         projectileGenerator = GetComponentInChildren<ProjectileGenerator>();
+        pickup = GetComponentInChildren<ItemPickup>();
     }
 
     private void Update()
@@ -36,14 +42,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // collide on y axis
-        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
             movement.y = 0f;
         }
 
-        // collide on z axis
-        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), LayerMask.GetMask("Living", "Blocking"));
+        // collide on x axis
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
             movement.x = 0f;

@@ -277,6 +277,8 @@ public class ProjectileGenerator : MonoBehaviour
                     emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
                 }
 
+                emission.rotation = attack.startRotation + angle;
+
                 particleSystems[i].Emit(emission, 1);
                 attackTime = 1f / stats.dexterity;
             }

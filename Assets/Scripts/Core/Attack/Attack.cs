@@ -5,13 +5,8 @@ namespace ChaosRising
     [Serializable]
     public class Attack
     {
-        public float lifetime;
-        public float speed;
-        public int projectileCount;
-        public int angleGap;
-        public int minDamage;
-        public int maxDamage;
-        public int armorIgnored;
+        public float lifetime, speed, inheritedVelocity;
+        public int projectileCount, angleGap, minDamage, maxDamage, startRotation, armorIgnored;
         public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;
@@ -19,7 +14,6 @@ namespace ChaosRising
         public PingPong pingPong;
         public Display display;
         public DeathEmission deathEmission;
-        public float inheritedVelocity;
     }
 
     [Serializable]
@@ -39,31 +33,26 @@ namespace ChaosRising
     [Serializable]
     public class Burst
     {
-        public int count;
-        public int cycles;
+        public int count, cycles;
         public float interval;
     }
 
     [Serializable]
     public class Arc
     {
-        public KeyValue<float>[] xVelocities;
-        public KeyValue<float>[] yVelocities;
+        public KeyValue<float>[] xVelocities, yVelocities;
     }
 
     [Serializable]
     public class PingPong
     {
-        public float width;
-        public float speed;
-        public float spread;
+        public float width, speed, spread;
     }
 
     [Serializable]
     public class Display
     {
-        public float minSize;
-        public float maxSize;
+        public float minSize, maxSize;
         public KeyValue<float>[] sizeOverTime;
 
         public Color tint;
@@ -75,9 +64,7 @@ namespace ChaosRising
     [Serializable]
     public class Color
     {
-        public float red;
-        public float green;
-        public float blue;
+        public float red, green, blue;
 
         public UnityEngine.Color ToColor()
         {

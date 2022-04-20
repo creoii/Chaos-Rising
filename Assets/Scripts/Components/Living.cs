@@ -3,10 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(StatContainer))]
 public class Living : MonoBehaviour
 {
-    public int health;
-    public int magic;
+    public int health, magic;
 
-    private StatContainer stats;
+    [HideInInspector] public StatContainer stats;
 
     private void Start()
     {
