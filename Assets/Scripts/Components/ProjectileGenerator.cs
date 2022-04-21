@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ProjectileGenerator : MonoBehaviour
 {
+    public Type type;
     public Attack attack;
     public ParticleSystem[] particleSystems;
 
@@ -29,7 +30,7 @@ public class ProjectileGenerator : MonoBehaviour
     {
         if (!sub) particleSystems[index] = particleSystem;
 
-        particleSystem.transform.position = Vector3.back;
+        particleSystem.transform.position = transform.parent.position;
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         particleSystem.loop = false;
@@ -111,7 +112,7 @@ public class ProjectileGenerator : MonoBehaviour
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
-        collision.collidesWith = LayerMask.GetMask("Blocking", "Enemy");
+        collision.collidesWith = LayerMask.GetMask("Blocking", type == Type.Player ? "Enemy" : "Player");
         #endregion
 
         #region GPU & Material
@@ -261,11 +262,11 @@ public class ProjectileGenerator : MonoBehaviour
 
     public void UpdateAttack()
     {
-        ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
         if ((attackTime -= Time.deltaTime) < 0f)
         {
+            ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
             ParticleSystem.ShapeModule shape;
-            float angle = MouseUtility.GetMouseAngle(transform.position, false);
+            float angle = type == Type.Player ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(0f, 0f) * Mathf.Rad2Deg);
             if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1f) / 2f) + 1);
             for (int i = 0; i < particleSystems.Length; ++i)
             {
@@ -283,5 +284,11 @@ public class ProjectileGenerator : MonoBehaviour
                 attackTime = 1f / stats.dexterity;
             }
         }
+    }
+
+    public enum Type
+    {
+        Player,
+        Enemy
     }
 }

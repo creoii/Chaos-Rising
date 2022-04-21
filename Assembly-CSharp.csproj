@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Components\Inventory.cs" />
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
+    <Compile Include="Assets\Scripts\Components\EnemyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
