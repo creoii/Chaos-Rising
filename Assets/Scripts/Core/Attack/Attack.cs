@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ChaosRising
 {
@@ -6,7 +7,8 @@ namespace ChaosRising
     public class Attack
     {
         public float lifetime, speed, inheritedVelocity;
-        public int projectileCount, startAngle, angleGap, minDamage, maxDamage, startRotation, armorIgnored;
+        public int projectileCount, startAngle, angleGap, angleChange, minDamage, maxDamage, startRotation, armorIgnored;
+        public Vector2 offset;
         public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;

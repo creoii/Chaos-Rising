@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectileGenerator : MonoBehaviour
 {
     public TargetType targetType;
+    public PositionType spawnPositionType;
     public Attack attack;
     public ParticleSystem[] emitters;
 
@@ -16,6 +17,7 @@ public class ProjectileGenerator : MonoBehaviour
     [System.Obsolete]
     private void Start()
     {
+        attack.startAngle += 90;
         emitters = new ParticleSystem[attack.projectileCount];
         stats = GetComponentInParent<StatContainer>().stats;
 
@@ -32,7 +34,8 @@ public class ProjectileGenerator : MonoBehaviour
     {
         if (!sub) emitters[index] = particleSystem;
 
-        particleSystem.transform.position = transform.parent.position;
+        particleSystem.transform.position = spawnPositionType == PositionType.Origin ? transform.parent.position : MouseUtility.GetMousePosition();
+        particleSystem.transform.position += new Vector3(attack.offset.x, attack.offset.y, 0f);
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         particleSystem.loop = false;
@@ -277,9 +280,10 @@ public class ProjectileGenerator : MonoBehaviour
             if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
             else directionToPlayer = Vector3.zero;
 
-            float angle = targetType == TargetType.Fixed ? attack.startAngle : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
+            float angle = targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
             if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
-            
+            if (attack.startAngle >= 360) attack.startAngle -= 360;
+
             for (int i = 0; i < emitters.Length; ++i)
             {
                 shape = emitters[i].shape;
@@ -303,5 +307,11 @@ public class ProjectileGenerator : MonoBehaviour
         Player,
         Mouse,
         Fixed
+    }
+
+    public enum PositionType
+    {
+        Origin,
+        Mouse
     }
 }

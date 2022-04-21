@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 
-public class GameManager
+namespace ChaosRising
 {
-    public static PlayerController[] GetPlayers()
+    public class GameManager
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        PlayerController[] ret = new PlayerController[players.Length];
-
-        for (int i = 0; i < players.Length; ++i)
+        public static PlayerController[] GetPlayers()
         {
-            ret[i] = players[i].GetComponent<PlayerController>();
-        }
-        return ret;
-    }
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            PlayerController[] ret = new PlayerController[players.Length];
 
-    public static PlayerController GetPlayer()
-    {
-        return GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            for (int i = 0; i < players.Length; ++i)
+            {
+                ret[i] = players[i].GetComponent<PlayerController>();
+            }
+            return ret;
+        }
+
+        public static PlayerController GetPlayer()
+        {
+            return GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
     }
 }

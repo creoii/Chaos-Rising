@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     {
         projectileGenerator = GetComponentInChildren<ProjectileGenerator>();
 
-        targetPlayer = GameManager.GetPlayer();
+        targetPlayer = ChaosRising.GameManager.GetPlayer();
     }
 
     private void Update()
