@@ -9,8 +9,6 @@ public class StatBar : MonoBehaviour
     public Living living;
     public RectTransform rectTransform;
 
-    private Action action;
-
     private void Start()
     {
         living = GetComponentInParent<Living>();
@@ -19,10 +17,10 @@ public class StatBar : MonoBehaviour
         switch(stat)
         {
             case 0:
-                action = () => MaxHealth();
+                living.statBars.Add(stat, () => MaxHealth());
                 break;
             case 1:
-                action = () => MaxMagic();
+                living.statBars.Add(stat, () => MaxMagic());
                 break;
             case 2:
                 break;
@@ -41,24 +39,13 @@ public class StatBar : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        action.Invoke();
-    }
-
     private void MaxHealth()
     {
-        if (living.stats.stats.maxHealth > 100)
-        {
-            rectTransform.sizeDelta = baseSize + (Vector2.right * (living.stats.stats.maxHealth - 100f) * .5f);
-        }
+        rectTransform.sizeDelta = baseSize + (Vector2.right * (living.health - 200f) * .5f);
     }
 
     private void MaxMagic()
     {
-        if (living.stats.stats.maxMagic > 100)
-        {
-            rectTransform.sizeDelta = baseSize + (Vector2.right * (living.stats.stats.maxMagic - 100f) * .5f);
-        }
+        rectTransform.sizeDelta = baseSize + (Vector2.right * (living.magic - 200f) * .5f);
     }
 }

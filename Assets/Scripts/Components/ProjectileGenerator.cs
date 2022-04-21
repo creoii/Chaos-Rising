@@ -5,7 +5,7 @@ public class ProjectileGenerator : MonoBehaviour
 {
     public TargetType targetType;
     public Attack attack;
-    public ParticleSystem[] particleSystems;
+    public ParticleSystem[] emitters;
 
     private Stats stats;
     private PlayerController targetPlayer;
@@ -16,7 +16,7 @@ public class ProjectileGenerator : MonoBehaviour
     [System.Obsolete]
     private void Start()
     {
-        particleSystems = new ParticleSystem[attack.projectileCount];
+        emitters = new ParticleSystem[attack.projectileCount];
         stats = GetComponentInParent<StatContainer>().stats;
 
         for (int i = 0; i < attack.projectileCount; ++i)
@@ -30,7 +30,7 @@ public class ProjectileGenerator : MonoBehaviour
     [System.Obsolete]
     private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, bool sub)
     {
-        if (!sub) particleSystems[index] = particleSystem;
+        if (!sub) emitters[index] = particleSystem;
 
         particleSystem.transform.position = transform.parent.position;
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
@@ -114,7 +114,6 @@ public class ProjectileGenerator : MonoBehaviour
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
-        print(transform.parent.name + " | " + targetType);
         collision.collidesWith = LayerMask.GetMask("Blocking", targetType == TargetType.Fixed ? "Player" : "Enemy");
         #endregion
 
@@ -281,9 +280,9 @@ public class ProjectileGenerator : MonoBehaviour
             float angle = targetType == TargetType.Fixed ? attack.startAngle : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
             if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
             
-            for (int i = 0; i < particleSystems.Length; ++i)
+            for (int i = 0; i < emitters.Length; ++i)
             {
-                shape = particleSystems[i].shape;
+                shape = emitters[i].shape;
                 shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
 
                 if (attack.display.maxSize > 0)
@@ -293,7 +292,7 @@ public class ProjectileGenerator : MonoBehaviour
 
                 emission.rotation = attack.startRotation + angle;
 
-                particleSystems[i].Emit(emission, 1);
+                emitters[i].Emit(emission, 1);
                 attackTime = 1f / stats.dexterity;
             }
         }
