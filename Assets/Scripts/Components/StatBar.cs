@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 public class StatBar : MonoBehaviour
 {
-    public Vector2 baseSize;
     public int stat;
 
     public Living living;
@@ -17,9 +15,11 @@ public class StatBar : MonoBehaviour
         switch(stat)
         {
             case 0:
+                rectTransform.sizeDelta = new Vector2(living.health * .5f, 10f); 
                 living.statBars.Add(stat, () => MaxHealth());
                 break;
             case 1:
+                rectTransform.sizeDelta = new Vector2(living.magic * .5f, 10f);
                 living.statBars.Add(stat, () => MaxMagic());
                 break;
             case 2:
@@ -41,11 +41,11 @@ public class StatBar : MonoBehaviour
 
     private void MaxHealth()
     {
-        rectTransform.sizeDelta = baseSize + (Vector2.right * (living.health - 200f) * .5f);
+        rectTransform.sizeDelta = new Vector2(living.health * .5f, 10f);
     }
 
     private void MaxMagic()
     {
-        rectTransform.sizeDelta = baseSize + (Vector2.right * (living.magic - 200f) * .5f);
+        rectTransform.sizeDelta = new Vector2(living.magic * .5f, 10f);
     }
 }

@@ -7,23 +7,23 @@ public class Living : MonoBehaviour
 {
     public int health, magic;
 
-    [HideInInspector] public StatContainer stats;
+    [HideInInspector] public ChaosRising.Stats stats;
     [HideInInspector] public Dictionary<int, Action> statBars = new Dictionary<int, Action>();
 
-    private void Start()
+    private void Awake()
     {
-        stats = GetComponent<StatContainer>();
+        stats = GetComponent<StatContainer>().stats;
 
-        health = stats.stats.maxHealth;
-        magic = stats.stats.maxMagic;
+        health = stats.maxHealth;
+        magic = stats.maxMagic;
     }
 
     private void OnEnable()
     {
         if (stats != null)
         {
-            health = stats.stats.maxHealth;
-            magic = stats.stats.maxMagic;
+            health = stats.maxHealth;
+            magic = stats.maxMagic;
         }
     }
 
@@ -43,7 +43,7 @@ public class Living : MonoBehaviour
 
     public void Damage(int amount, int armorIgnored)
     {
-        if (armorIgnored >= stats.stats.armor) amount += stats.stats.armor;
+        if (armorIgnored >= stats.armor) amount += stats.armor;
         else amount += armorIgnored;
 
         Damage(amount);
