@@ -66,6 +66,8 @@ namespace ChaosRising
         public float minSize, maxSize;
         public KeyValue<float>[] sizeOverTime;
 
+        public KeyValue<float>[] rotateOverTime;
+
         public Color tint;
         public KeyValue<Color>[] colorOverTime;
         public KeyValue<float>[] alphaOverTime;

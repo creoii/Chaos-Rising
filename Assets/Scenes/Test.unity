@@ -6182,6 +6182,7 @@ MonoBehaviour:
       minSize: 0.1
       maxSize: 0.1
       sizeOverTime: []
+      rotateOverTime: []
       tint:
         red: 1
         green: 1
@@ -6235,6 +6236,7 @@ MonoBehaviour:
           minSize: 0
           maxSize: 0
           sizeOverTime: []
+          rotateOverTime: []
           tint:
             red: 0
             green: 0
@@ -6278,6 +6280,7 @@ MonoBehaviour:
               minSize: 0
               maxSize: 0
               sizeOverTime: []
+              rotateOverTime: []
               tint:
                 red: 0
                 green: 0
@@ -6321,6 +6324,7 @@ MonoBehaviour:
                   minSize: 0
                   maxSize: 0
                   sizeOverTime: []
+                  rotateOverTime: []
                   tint:
                     red: 0
                     green: 0
@@ -6364,6 +6368,7 @@ MonoBehaviour:
                       minSize: 0
                       maxSize: 0
                       sizeOverTime: []
+                      rotateOverTime: []
                       tint:
                         red: 0
                         green: 0
@@ -6472,6 +6477,9 @@ MonoBehaviour:
       minSize: 0.1
       maxSize: 0.1
       sizeOverTime: []
+      rotateOverTime:
+      - key: 0
+        value: 30
       tint:
         red: 1
         green: 1
@@ -6525,6 +6533,7 @@ MonoBehaviour:
           minSize: 0
           maxSize: 0
           sizeOverTime: []
+          rotateOverTime: []
           tint:
             red: 0
             green: 0
@@ -6568,6 +6577,7 @@ MonoBehaviour:
               minSize: 0
               maxSize: 0
               sizeOverTime: []
+              rotateOverTime: []
               tint:
                 red: 0
                 green: 0
@@ -6611,6 +6621,7 @@ MonoBehaviour:
                   minSize: 0
                   maxSize: 0
                   sizeOverTime: []
+                  rotateOverTime: []
                   tint:
                     red: 0
                     green: 0
@@ -6654,6 +6665,7 @@ MonoBehaviour:
                       minSize: 0
                       maxSize: 0
                       sizeOverTime: []
+                      rotateOverTime: []
                       tint:
                         red: 0
                         green: 0

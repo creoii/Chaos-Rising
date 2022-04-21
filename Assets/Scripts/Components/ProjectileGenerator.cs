@@ -13,6 +13,7 @@ public class ProjectileGenerator : MonoBehaviour
 
     private float attackTime;
     private Vector3 directionToPlayer;
+    private Vector3 mousePosition;
 
     [System.Obsolete]
     private void Start()
@@ -20,6 +21,7 @@ public class ProjectileGenerator : MonoBehaviour
         attack.startAngle += 90;
         emitters = new ParticleSystem[attack.projectileCount];
         stats = GetComponentInParent<StatContainer>().stats;
+        mousePosition = MouseUtility.GetMousePosition();
 
         for (int i = 0; i < attack.projectileCount; ++i)
         {
@@ -34,7 +36,7 @@ public class ProjectileGenerator : MonoBehaviour
     {
         if (!sub) emitters[index] = particleSystem;
 
-        particleSystem.transform.position = spawnPositionType == PositionType.Origin ? transform.parent.position : MouseUtility.GetMousePosition();
+        particleSystem.transform.position = spawnPositionType == PositionType.Origin ? transform.parent.position : mousePosition;
         particleSystem.transform.position += new Vector3(attack.offset.x, attack.offset.y, 0f);
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
@@ -118,7 +120,7 @@ public class ProjectileGenerator : MonoBehaviour
         collision.bounce = attack.collision.bounce;
         collision.lifetimeLoss = attack.collision.lifetimeLoss;
         collision.sendCollisionMessages = true;
-        collision.collidesWith = LayerMask.GetMask("Blocking", targetType == TargetType.Fixed ? "Player" : "Enemy");
+        collision.collidesWith = LayerMask.GetMask("Blocking", transform.parent.tag.Equals("Player") ? "Enemy" : "Player");
         #endregion
 
         #region GPU & Material
@@ -139,6 +141,21 @@ public class ProjectileGenerator : MonoBehaviour
                 sizes[i] = new Keyframe(kv.key, kv.value);
             }
             sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(sizes));
+        }
+        #endregion
+
+        #region Rotate Over Time
+        if (attack.display.rotateOverTime.Length > 0)
+        {
+            ParticleSystem.RotationOverLifetimeModule rotationOverLifetime = particleSystem.rotationOverLifetime;
+            rotationOverLifetime.enabled = true;
+            Keyframe[] rotations = new Keyframe[attack.display.rotateOverTime.Length];
+            for (int i = 0; i < attack.display.rotateOverTime.Length; ++i)
+            {
+                KeyValue<float> kv = attack.display.rotateOverTime[i];
+                rotations[i] = new Keyframe(kv.key, kv.value);
+            }
+            rotationOverLifetime.z = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(rotations));
         }
         #endregion
 
@@ -280,6 +297,7 @@ public class ProjectileGenerator : MonoBehaviour
 
             if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
             else directionToPlayer = Vector3.zero;
+            mousePosition = MouseUtility.GetMousePosition();
 
             float angle = targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
             if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
