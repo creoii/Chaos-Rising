@@ -6,7 +6,7 @@ namespace ChaosRising
     public class Attack
     {
         public float lifetime, speed, inheritedVelocity;
-        public int projectileCount, angleGap, minDamage, maxDamage, startRotation, armorIgnored;
+        public int projectileCount, startAngle, angleGap, minDamage, maxDamage, startRotation, armorIgnored;
         public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;

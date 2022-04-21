@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class ProjectileGenerator : MonoBehaviour
 {
-    public Type type;
+    public TargetType targetType;
     public Attack attack;
     public ParticleSystem[] particleSystems;
 
     private Stats stats;
+    private PlayerController targetPlayer;
 
     private float attackTime;
+    private Vector3 directionToPlayer;
 
     [System.Obsolete]
     private void Start()
@@ -112,7 +114,8 @@ public class ProjectileGenerator : MonoBehaviour
         collision.bounce = 0f;
         collision.lifetimeLoss = 1f;
         collision.sendCollisionMessages = true;
-        collision.collidesWith = LayerMask.GetMask("Blocking", type == Type.Player ? "Enemy" : "Player");
+        print(transform.parent.name + " | " + targetType);
+        collision.collidesWith = LayerMask.GetMask("Blocking", targetType == TargetType.Fixed ? "Player" : "Enemy");
         #endregion
 
         #region GPU & Material
@@ -260,14 +263,24 @@ public class ProjectileGenerator : MonoBehaviour
         #endregion
     }
 
+    public void SetTargetPlayer(PlayerController targetPlayer)
+    {
+        this.targetPlayer = targetPlayer;
+    }
+
     public void UpdateAttack()
     {
         if ((attackTime -= Time.deltaTime) < 0f)
         {
             ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
             ParticleSystem.ShapeModule shape;
-            float angle = type == Type.Player ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(0f, 0f) * Mathf.Rad2Deg);
-            if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1f) / 2f) + 1);
+
+            if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
+            else directionToPlayer = Vector3.zero;
+
+            float angle = targetType == TargetType.Fixed ? attack.startAngle : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
+            if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
+            
             for (int i = 0; i < particleSystems.Length; ++i)
             {
                 shape = particleSystems[i].shape;
@@ -286,9 +299,10 @@ public class ProjectileGenerator : MonoBehaviour
         }
     }
 
-    public enum Type
+    public enum TargetType
     {
         Player,
-        Enemy
+        Mouse,
+        Fixed
     }
 }

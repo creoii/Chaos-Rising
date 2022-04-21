@@ -4436,7 +4436,7 @@ MonoBehaviour:
     maxMagic: 250
     speed: 1
     dexterity: 15
-    armor: 0
+    armor: 20
     attack: 0
     healthRegen: 0
     magicRegen: 0
@@ -5974,16 +5974,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  targetType: 2
   attack:
     lifetime: 2
     speed: 1.5
     inheritedVelocity: 0
     projectileCount: 2
+    startAngle: 0
     angleGap: 20
-    minDamage: 25
-    maxDamage: 50
-    startRotation: 0
+    minDamage: 10
+    maxDamage: 20
+    startRotation: -45
     armorIgnored: 0
     acceleration:
       accelerations: []
@@ -6026,6 +6027,7 @@ MonoBehaviour:
         speed: 1
         inheritedVelocity: 0
         projectileCount: 9
+        startAngle: 0
         angleGap: 40
         minDamage: 0
         maxDamage: 0
@@ -6062,6 +6064,7 @@ MonoBehaviour:
             speed: 0
             inheritedVelocity: 0
             projectileCount: 0
+            startAngle: 0
             angleGap: 0
             minDamage: 0
             maxDamage: 0
@@ -6098,6 +6101,7 @@ MonoBehaviour:
                 speed: 0
                 inheritedVelocity: 0
                 projectileCount: 0
+                startAngle: 0
                 angleGap: 0
                 minDamage: 0
                 maxDamage: 0
@@ -6134,6 +6138,7 @@ MonoBehaviour:
                     speed: 0
                     inheritedVelocity: 0
                     projectileCount: 0
+                    startAngle: 0
                     angleGap: 0
                     minDamage: 0
                     maxDamage: 0
@@ -6170,6 +6175,7 @@ MonoBehaviour:
                         speed: 0
                         inheritedVelocity: 0
                         projectileCount: 0
+                        startAngle: 0
                         angleGap: 0
                         minDamage: 0
                         maxDamage: 0
@@ -6191,7 +6197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2088223492}
   - component: {fileID: 2088223493}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: ProjectileGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6225,12 +6231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  targetType: 1
   attack:
     lifetime: 2
     speed: 1.5
     inheritedVelocity: 0
     projectileCount: 2
+    startAngle: 0
     angleGap: 20
     minDamage: 25
     maxDamage: 50
@@ -6277,6 +6284,7 @@ MonoBehaviour:
         speed: 1
         inheritedVelocity: 0
         projectileCount: 9
+        startAngle: 0
         angleGap: 40
         minDamage: 0
         maxDamage: 0
@@ -6313,6 +6321,7 @@ MonoBehaviour:
             speed: 0
             inheritedVelocity: 0
             projectileCount: 0
+            startAngle: 0
             angleGap: 0
             minDamage: 0
             maxDamage: 0
@@ -6349,6 +6358,7 @@ MonoBehaviour:
                 speed: 0
                 inheritedVelocity: 0
                 projectileCount: 0
+                startAngle: 0
                 angleGap: 0
                 minDamage: 0
                 maxDamage: 0
@@ -6385,6 +6395,7 @@ MonoBehaviour:
                     speed: 0
                     inheritedVelocity: 0
                     projectileCount: 0
+                    startAngle: 0
                     angleGap: 0
                     minDamage: 0
                     maxDamage: 0
@@ -6421,6 +6432,7 @@ MonoBehaviour:
                         speed: 0
                         inheritedVelocity: 0
                         projectileCount: 0
+                        startAngle: 0
                         angleGap: 0
                         minDamage: 0
                         maxDamage: 0
