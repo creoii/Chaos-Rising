@@ -2,44 +2,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(GridLayoutGroup))]
 public class Inventory : MonoBehaviour
 {
     public int size;
 
-    public List<ItemContainer> items;
+    public GridLayoutGroup gridLayout;
+    public GameObject slotPrefab;
+    private List<Slot> slots;
 
     private void Start()
     {
-        items = new List<ItemContainer>();
+        slots = new List<Slot>();
         for (int i = 0; i < size; ++i)
         {
-            items.Add(null);
+            slots.Add(Instantiate(slotPrefab, transform).GetComponent<Slot>());
         }
+
+        gridLayout = GetComponent<GridLayoutGroup>();
     }
 
     public ItemContainer GetItem(int index)
     {
-        return items[index];
+        return slots[index].item;
     }
 
     public ItemContainer SetItem(int index, Transform parent, ItemContainer item)
     {
-        if (index >= 0 && index < items.Count)
+        if (index >= 0 && index < slots.Count)
         {
-            // item.SetParent(parent, Vector3.zero);
-            return items[index] = item;
+            return slots[index].item = item;
         }
         return item;
     }
 
     public void AddItem(Transform parent, ItemContainer item)
     {
-        for (int i = 0; i < items.Count; ++i)
+        for (int i = 0; i < slots.Count; ++i)
         {
-            if (items[i] == null)
+            if (slots[i] == null)
             {
-                // item.SetParent(parent, Vector3.zero);
-                items[i] = item;
+                slots[i].item = item;
             }
         }
     }

@@ -1,19 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Image))]
 public class ItemContainer : MonoBehaviour
 {
     public ChaosRising.Item item;
     public bool draggable = false;
 
-    private SpriteRenderer spriteRenderer;
+    private Image image;
 
     private void Start()
     {
         item = new ChaosRising.Item("inquisition");
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
+        image = GetComponent<Image>();
+        image.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
     }
 
     private void OnMouseDrag()

@@ -312,7 +312,6 @@ public class ProjectileGenerator : MonoBehaviour
                 {
                     emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
                 }
-
                 emission.rotation = attack.startRotation + angle;
 
                 emitters[i].Emit(emission, 1);

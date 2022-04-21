@@ -8,6 +8,31 @@ public class CameraController : MonoBehaviour
     public float seekSpeed;
     private Vector3 seek;
 
+    new private Camera camera;
+    private void Start()
+    {
+        camera = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            if (Input.mouseScrollDelta.y > 0 && camera.orthographicSize < .2f)
+            {
+                print("out");
+                // ZOOM OUT
+                camera.orthographicSize += .1f;
+            }
+            if (Input.mouseScrollDelta.y < 0 && camera.orthographicSize > 1.8f)
+            {
+                print("in");
+                // ZOOM IN
+                camera.orthographicSize -= .1f;
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         seek = Input.mousePosition;
