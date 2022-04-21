@@ -114,8 +114,9 @@ public class ProjectileGenerator : MonoBehaviour
         collision.mode = ParticleSystemCollisionMode.Collision2D;
         collision.type = ParticleSystemCollisionType.World;
         collision.quality = ParticleSystemCollisionQuality.High;
-        collision.bounce = 0f;
-        collision.lifetimeLoss = 1f;
+        collision.dampen = attack.collision.dampen;
+        collision.bounce = attack.collision.bounce;
+        collision.lifetimeLoss = attack.collision.lifetimeLoss;
         collision.sendCollisionMessages = true;
         collision.collidesWith = LayerMask.GetMask("Blocking", targetType == TargetType.Fixed ? "Player" : "Enemy");
         #endregion

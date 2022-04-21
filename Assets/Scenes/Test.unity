@@ -6174,6 +6174,10 @@ MonoBehaviour:
       width: 0
       speed: 0
       spread: 0
+    collision:
+      dampen: 0.5
+      bounce: 1
+      lifetimeLoss: 0
     display:
       minSize: 0.1
       maxSize: 0.1
@@ -6223,6 +6227,10 @@ MonoBehaviour:
           width: 0
           speed: 0
           spread: 0
+        collision:
+          dampen: 0
+          bounce: 0
+          lifetimeLoss: 0
         display:
           minSize: 0
           maxSize: 0
@@ -6262,6 +6270,10 @@ MonoBehaviour:
               width: 0
               speed: 0
               spread: 0
+            collision:
+              dampen: 0
+              bounce: 0
+              lifetimeLoss: 0
             display:
               minSize: 0
               maxSize: 0
@@ -6301,6 +6313,10 @@ MonoBehaviour:
                   width: 0
                   speed: 0
                   spread: 0
+                collision:
+                  dampen: 0
+                  bounce: 0
+                  lifetimeLoss: 0
                 display:
                   minSize: 0
                   maxSize: 0
@@ -6340,6 +6356,10 @@ MonoBehaviour:
                       width: 0
                       speed: 0
                       spread: 0
+                    collision:
+                      dampen: 0
+                      bounce: 0
+                      lifetimeLoss: 0
                     display:
                       minSize: 0
                       maxSize: 0
@@ -6415,8 +6435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: 2
-  spawnPositionType: 1
+  targetType: 1
+  spawnPositionType: 0
   attack:
     lifetime: 2
     speed: 1.5
@@ -6444,6 +6464,10 @@ MonoBehaviour:
       width: 0
       speed: 0
       spread: 0
+    collision:
+      dampen: 0
+      bounce: 0
+      lifetimeLoss: 1
     display:
       minSize: 0.1
       maxSize: 0.1
@@ -6493,6 +6517,10 @@ MonoBehaviour:
           width: 0
           speed: 0
           spread: 0
+        collision:
+          dampen: 0
+          bounce: 0
+          lifetimeLoss: 0
         display:
           minSize: 0
           maxSize: 0
@@ -6532,6 +6560,10 @@ MonoBehaviour:
               width: 0
               speed: 0
               spread: 0
+            collision:
+              dampen: 0
+              bounce: 0
+              lifetimeLoss: 0
             display:
               minSize: 0
               maxSize: 0
@@ -6571,6 +6603,10 @@ MonoBehaviour:
                   width: 0
                   speed: 0
                   spread: 0
+                collision:
+                  dampen: 0
+                  bounce: 0
+                  lifetimeLoss: 0
                 display:
                   minSize: 0
                   maxSize: 0
@@ -6610,6 +6646,10 @@ MonoBehaviour:
                       width: 0
                       speed: 0
                       spread: 0
+                    collision:
+                      dampen: 0
+                      bounce: 0
+                      lifetimeLoss: 0
                     display:
                       minSize: 0
                       maxSize: 0

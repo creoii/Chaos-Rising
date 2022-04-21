@@ -14,6 +14,7 @@ namespace ChaosRising
         public Burst[] bursts;
         public Arc arc;
         public PingPong pingPong;
+        public Collision collision;
         public Display display;
         public DeathEmission deathEmission;
     }
@@ -49,6 +50,14 @@ namespace ChaosRising
     public class PingPong
     {
         public float width, speed, spread;
+    }
+
+    [Serializable]
+    public class Collision
+    {
+        public float dampen;
+        public float bounce;
+        public float lifetimeLoss = 1f;
     }
 
     [Serializable]
