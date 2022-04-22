@@ -74,6 +74,12 @@
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
     <Compile Include="Assets\Scripts\Components\Slot.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\AbilityItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\WeaponItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\ArmorItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\SigilItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\AccessoryItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Item\ConsumableItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

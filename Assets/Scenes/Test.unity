@@ -123,126 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &368452283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 368452290}
-  - component: {fileID: 368452285}
-  - component: {fileID: 368452287}
-  - component: {fileID: 368452292}
-  - component: {fileID: 368452291}
-  m_Layer: 8
-  m_Name: Item
-  m_TagString: Item
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &368452285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368452283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b838ae80e764e86409f916a0fcf78072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item:
-    name: 
-    sprite: 
-  draggable: 0
---- !u!61 &368452287
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368452283}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
---- !u!224 &368452290
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368452283}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1605659342}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &368452291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368452283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 910457ebe0ea04a438c457fd24543a22, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &368452292
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368452283}
-  m_CullTransparentMesh: 1
 --- !u!1 &734969946
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,15 +192,15 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
-  m_PixelPerfect: 1
+  m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -394726661
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &734969950
@@ -337,7 +217,6 @@ RectTransform:
   m_Children:
   - {fileID: 1348175647}
   - {fileID: 827204845}
-  - {fileID: 1957979406}
   m_Father: {fileID: 1506330231}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -382,7 +261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 135}
+  m_AnchoredPosition: {x: 5, y: 130}
   m_SizeDelta: {x: 100, y: 10}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &827204846
@@ -414,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.24985123, g: 0, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4290,6 +4169,82 @@ MonoBehaviour:
   target: {fileID: 1506330231}
   zOffset: -10
   seekSpeed: 1
+--- !u!1 &1318908838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318908839}
+  - component: {fileID: 1318908841}
+  - component: {fileID: 1318908840}
+  m_Layer: 5
+  m_Name: HeartIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1318908839
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318908838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1348175647}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -5.0000305, y: -2}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1318908840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318908838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 582761579, guid: 82398cf634f95294e9c6545a0ae2d9c2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1318908841
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318908838}
+  m_CullTransparentMesh: 1
 --- !u!1 &1348175646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,7 +4275,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1318908839}
   m_Father: {fileID: 734969950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4358,7 +4314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4396,7 +4352,6 @@ GameObject:
   - component: {fileID: 1506330232}
   - component: {fileID: 1506330233}
   - component: {fileID: 1506330234}
-  - component: {fileID: 1506330236}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -4417,7 +4372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 500
+    maxHealth: 10000
     maxMagic: 250
     speed: 1
     dexterity: 15
@@ -4545,18 +4500,6 @@ MonoBehaviour:
     attack: 0
     healthRegen: 0
     magicRegen: 0
---- !u!114 &1506330236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506330228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277161be04843664d80e73442908d645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1566975931
 GameObject:
   m_ObjectHideFlags: 0
@@ -4670,107 +4613,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1605659338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1605659342}
-  - component: {fileID: 1605659341}
-  - component: {fileID: 1605659340}
-  - component: {fileID: 1605659339}
-  m_Layer: 5
-  m_Name: Game Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1605659339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605659338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1605659340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605659338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1605659341
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605659338}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 963194227}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 1
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -394726661
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1605659342
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605659338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 368452290}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1750181225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,123 +5994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6180b00bf698011499498e3f345e29a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1957979405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1957979406}
-  - component: {fileID: 1957979409}
-  - component: {fileID: 1957979410}
-  - component: {fileID: 1957979412}
-  - component: {fileID: 1957979411}
-  m_Layer: 5
-  m_Name: Inventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1957979406
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957979405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 734969950}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 135, y: 100}
-  m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1957979409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957979405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd1ebbf0b880ec4eacb3a4c5175e42b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 4
-  gridLayout: {fileID: 0}
-  slotPrefab: {fileID: 5363244835695882603, guid: 3b2ab044865dc2443971642a2ab183e3, type: 3}
---- !u!114 &1957979410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957979405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 5
-    m_Bottom: 5
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 25, y: 25}
-  m_Spacing: {x: 5, y: 5}
-  m_Constraint: 0
-  m_ConstraintCount: 4
---- !u!114 &1957979411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957979405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1957979412
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957979405}
-  m_CullTransparentMesh: 1
 --- !u!1 &2031481349
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,15 +6038,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: 2
-  spawnPositionType: 0
-  attack:
+  attacks:
+  - targetType: 2
+    spawnPositionType: 0
     lifetime: 2
-    speed: 1.5
+    speed: 1
+    rateOfFire: 0
     inheritedVelocity: 0
     projectileCount: 2
-    startAngle: 0
     angleGap: 20
+    startAngle: 0
     angleChange: 10
     minDamage: 10
     maxDamage: 20
@@ -6329,240 +6055,92 @@ MonoBehaviour:
     armorIgnored: 0
     offset: {x: 0, y: 0}
     acceleration:
-      accelerations: []
+      offset: 0
+      acceleration: 0
       max: 0
     orbit:
       speed: 0
       radial: 0
     bursts: []
-    arc:
-      xVelocities: []
-      yVelocities: []
     pingPong:
       width: 0
       speed: 0
       spread: 0
     collision:
       dampen: 0
-      bounce: 0
-      lifetimeLoss: 0
+      bounce: 0.5
+      lifetimeLoss: 0.5
     display:
-      minSize: 0.1
-      maxSize: 0.1
-      sizeOverTime: []
-      rotateOverTime: []
-      tint:
-        red: 1
-        green: 1
-        blue: 1
-      colorOverTime:
-      - key: 0
-        value:
-          red: 1
-          green: 1
-          blue: 1
-      - key: 0.9
-        value:
-          red: 1
-          green: 0.25
-          blue: 1
-      alphaOverTime: []
-      blend: 1
-    deathEmission:
-      attack:
-        lifetime: 2
-        speed: 1
-        inheritedVelocity: 0
-        projectileCount: 9
-        startAngle: 0
-        angleGap: 40
-        angleChange: 0
-        minDamage: 0
-        maxDamage: 0
-        startRotation: 0
-        armorIgnored: 0
-        offset: {x: 0, y: 0}
-        acceleration:
-          accelerations: []
-          max: 0
-        orbit:
-          speed: 0.5
-          radial: 1
-        bursts: []
-        arc:
-          xVelocities: []
-          yVelocities: []
-        pingPong:
-          width: 0
-          speed: 0
-          spread: 0
-        collision:
-          dampen: 0
-          bounce: 0
-          lifetimeLoss: 0
-        display:
-          minSize: 0
-          maxSize: 0
-          sizeOverTime: []
-          rotateOverTime: []
-          tint:
-            red: 0
-            green: 0
-            blue: 0
-          colorOverTime: []
-          alphaOverTime: []
-          blend: 0
-        deathEmission:
-          attack:
-            lifetime: 0
-            speed: 0
-            inheritedVelocity: 0
-            projectileCount: 0
-            startAngle: 0
-            angleGap: 0
-            angleChange: 0
-            minDamage: 0
-            maxDamage: 0
-            startRotation: 0
-            armorIgnored: 0
-            offset: {x: 0, y: 0}
-            acceleration:
-              accelerations: []
-              max: 0
-            orbit:
-              speed: 0
-              radial: 0
-            bursts: []
-            arc:
-              xVelocities: []
-              yVelocities: []
-            pingPong:
-              width: 0
-              speed: 0
-              spread: 0
-            collision:
-              dampen: 0
-              bounce: 0
-              lifetimeLoss: 0
-            display:
-              minSize: 0
-              maxSize: 0
-              sizeOverTime: []
-              rotateOverTime: []
-              tint:
-                red: 0
-                green: 0
-                blue: 0
-              colorOverTime: []
-              alphaOverTime: []
-              blend: 0
-            deathEmission:
-              attack:
-                lifetime: 0
-                speed: 0
-                inheritedVelocity: 0
-                projectileCount: 0
-                startAngle: 0
-                angleGap: 0
-                angleChange: 0
-                minDamage: 0
-                maxDamage: 0
-                startRotation: 0
-                armorIgnored: 0
-                offset: {x: 0, y: 0}
-                acceleration:
-                  accelerations: []
-                  max: 0
-                orbit:
-                  speed: 0
-                  radial: 0
-                bursts: []
-                arc:
-                  xVelocities: []
-                  yVelocities: []
-                pingPong:
-                  width: 0
-                  speed: 0
-                  spread: 0
-                collision:
-                  dampen: 0
-                  bounce: 0
-                  lifetimeLoss: 0
-                display:
-                  minSize: 0
-                  maxSize: 0
-                  sizeOverTime: []
-                  rotateOverTime: []
-                  tint:
-                    red: 0
-                    green: 0
-                    blue: 0
-                  colorOverTime: []
-                  alphaOverTime: []
-                  blend: 0
-                deathEmission:
-                  attack:
-                    lifetime: 0
-                    speed: 0
-                    inheritedVelocity: 0
-                    projectileCount: 0
-                    startAngle: 0
-                    angleGap: 0
-                    angleChange: 0
-                    minDamage: 0
-                    maxDamage: 0
-                    startRotation: 0
-                    armorIgnored: 0
-                    offset: {x: 0, y: 0}
-                    acceleration:
-                      accelerations: []
-                      max: 0
-                    orbit:
-                      speed: 0
-                      radial: 0
-                    bursts: []
-                    arc:
-                      xVelocities: []
-                      yVelocities: []
-                    pingPong:
-                      width: 0
-                      speed: 0
-                      spread: 0
-                    collision:
-                      dampen: 0
-                      bounce: 0
-                      lifetimeLoss: 0
-                    display:
-                      minSize: 0
-                      maxSize: 0
-                      sizeOverTime: []
-                      rotateOverTime: []
-                      tint:
-                        red: 0
-                        green: 0
-                        blue: 0
-                      colorOverTime: []
-                      alphaOverTime: []
-                      blend: 0
-                    deathEmission:
-                      attack:
-                        lifetime: 0
-                        speed: 0
-                        inheritedVelocity: 0
-                        projectileCount: 0
-                        startAngle: 0
-                        angleGap: 0
-                        angleChange: 0
-                        minDamage: 0
-                        maxDamage: 0
-                        startRotation: 0
-                        armorIgnored: 0
-                        offset: {x: 0, y: 0}
-                      chance: 0
-                  chance: 0
-              chance: 0
-          chance: 0
-      chance: 0.25
+      minSize: 0
+      maxSize: 0
+      sizeOffset: 0
+      sizeChange: 0
+      rotateOffset: 0
+      rotateChange: 0
+      tintRed: 0
+      tintGreen: 0
+      tintBlue: 0
+      tintAlpha: 0
+      colorOffset: 0
+      colorChangeRed: 0
+      colorChangeGreen: 0
+      colorChangeBlue: 0
+      colorChangeAlpha: 0
+      alphaOffset: 0
+      alphaChange: 0
+      blend: 0
+    attackTime: 0
+  - targetType: 2
+    spawnPositionType: 0
+    lifetime: 2
+    speed: 1
+    rateOfFire: 0
+    inheritedVelocity: 0
+    projectileCount: 6
+    angleGap: 60
+    startAngle: 0
+    angleChange: 2
+    minDamage: 25
+    maxDamage: 40
+    startRotation: -45
+    armorIgnored: 0
+    offset: {x: 0, y: 0}
+    acceleration:
+      offset: 0
+      acceleration: 0
+      max: 0
+    orbit:
+      speed: 0
+      radial: 0
+    bursts: []
+    pingPong:
+      width: 0
+      speed: 0
+      spread: 0
+    collision:
+      dampen: 0
+      bounce: 0.5
+      lifetimeLoss: 0.5
+    display:
+      minSize: 0
+      maxSize: 0
+      sizeOffset: 0
+      sizeChange: 0
+      rotateOffset: 0
+      rotateChange: 0
+      tintRed: 0
+      tintGreen: 0
+      tintBlue: 0
+      tintAlpha: 0
+      colorOffset: 0
+      colorChangeRed: 0
+      colorChangeGreen: 0
+      colorChangeBlue: 0
+      colorChangeAlpha: 0
+      alphaOffset: 0
+      alphaChange: 0
+      blend: 0
+    attackTime: 0
   emitters: []
 --- !u!1 &2088223491
 GameObject:
@@ -6608,31 +6186,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: 1
-  spawnPositionType: 0
-  attack:
+  attacks:
+  - targetType: 1
+    spawnPositionType: 0
     lifetime: 2
-    speed: 1.5
+    speed: 1
+    rateOfFire: 0
     inheritedVelocity: 0
     projectileCount: 2
-    startAngle: 0
     angleGap: 20
+    startAngle: 0
     angleChange: 0
-    minDamage: 25
-    maxDamage: 50
+    minDamage: 10
+    maxDamage: 25
     startRotation: -45
     armorIgnored: 0
     offset: {x: 0, y: 0}
     acceleration:
-      accelerations: []
+      offset: 0
+      acceleration: 0
       max: 0
     orbit:
       speed: 0
       radial: 0
     bursts: []
-    arc:
-      xVelocities: []
-      yVelocities: []
     pingPong:
       width: 0
       speed: 0
@@ -6640,224 +6217,25 @@ MonoBehaviour:
     collision:
       dampen: 0
       bounce: 0
-      lifetimeLoss: 1
+      lifetimeLoss: 0
     display:
-      minSize: 0.1
-      maxSize: 0.1
-      sizeOverTime: []
-      rotateOverTime:
-      - key: 0
-        value: 30
-      tint:
-        red: 1
-        green: 1
-        blue: 1
-      colorOverTime:
-      - key: 0
-        value:
-          red: 1
-          green: 1
-          blue: 1
-      - key: 0.9
-        value:
-          red: 1
-          green: 0.25
-          blue: 1
-      alphaOverTime: []
-      blend: 1
-    deathEmission:
-      attack:
-        lifetime: 2
-        speed: 1
-        inheritedVelocity: 0
-        projectileCount: 9
-        startAngle: 0
-        angleGap: 40
-        angleChange: 0
-        minDamage: 0
-        maxDamage: 0
-        startRotation: 0
-        armorIgnored: 0
-        offset: {x: 0, y: 0}
-        acceleration:
-          accelerations: []
-          max: 0
-        orbit:
-          speed: 0.5
-          radial: 1
-        bursts: []
-        arc:
-          xVelocities: []
-          yVelocities: []
-        pingPong:
-          width: 0
-          speed: 0
-          spread: 0
-        collision:
-          dampen: 0
-          bounce: 0
-          lifetimeLoss: 0
-        display:
-          minSize: 0
-          maxSize: 0
-          sizeOverTime: []
-          rotateOverTime: []
-          tint:
-            red: 0
-            green: 0
-            blue: 0
-          colorOverTime: []
-          alphaOverTime: []
-          blend: 0
-        deathEmission:
-          attack:
-            lifetime: 0
-            speed: 0
-            inheritedVelocity: 0
-            projectileCount: 0
-            startAngle: 0
-            angleGap: 0
-            angleChange: 0
-            minDamage: 0
-            maxDamage: 0
-            startRotation: 0
-            armorIgnored: 0
-            offset: {x: 0, y: 0}
-            acceleration:
-              accelerations: []
-              max: 0
-            orbit:
-              speed: 0
-              radial: 0
-            bursts: []
-            arc:
-              xVelocities: []
-              yVelocities: []
-            pingPong:
-              width: 0
-              speed: 0
-              spread: 0
-            collision:
-              dampen: 0
-              bounce: 0
-              lifetimeLoss: 0
-            display:
-              minSize: 0
-              maxSize: 0
-              sizeOverTime: []
-              rotateOverTime: []
-              tint:
-                red: 0
-                green: 0
-                blue: 0
-              colorOverTime: []
-              alphaOverTime: []
-              blend: 0
-            deathEmission:
-              attack:
-                lifetime: 0
-                speed: 0
-                inheritedVelocity: 0
-                projectileCount: 0
-                startAngle: 0
-                angleGap: 0
-                angleChange: 0
-                minDamage: 0
-                maxDamage: 0
-                startRotation: 0
-                armorIgnored: 0
-                offset: {x: 0, y: 0}
-                acceleration:
-                  accelerations: []
-                  max: 0
-                orbit:
-                  speed: 0
-                  radial: 0
-                bursts: []
-                arc:
-                  xVelocities: []
-                  yVelocities: []
-                pingPong:
-                  width: 0
-                  speed: 0
-                  spread: 0
-                collision:
-                  dampen: 0
-                  bounce: 0
-                  lifetimeLoss: 0
-                display:
-                  minSize: 0
-                  maxSize: 0
-                  sizeOverTime: []
-                  rotateOverTime: []
-                  tint:
-                    red: 0
-                    green: 0
-                    blue: 0
-                  colorOverTime: []
-                  alphaOverTime: []
-                  blend: 0
-                deathEmission:
-                  attack:
-                    lifetime: 0
-                    speed: 0
-                    inheritedVelocity: 0
-                    projectileCount: 0
-                    startAngle: 0
-                    angleGap: 0
-                    angleChange: 0
-                    minDamage: 0
-                    maxDamage: 0
-                    startRotation: 0
-                    armorIgnored: 0
-                    offset: {x: 0, y: 0}
-                    acceleration:
-                      accelerations: []
-                      max: 0
-                    orbit:
-                      speed: 0
-                      radial: 0
-                    bursts: []
-                    arc:
-                      xVelocities: []
-                      yVelocities: []
-                    pingPong:
-                      width: 0
-                      speed: 0
-                      spread: 0
-                    collision:
-                      dampen: 0
-                      bounce: 0
-                      lifetimeLoss: 0
-                    display:
-                      minSize: 0
-                      maxSize: 0
-                      sizeOverTime: []
-                      rotateOverTime: []
-                      tint:
-                        red: 0
-                        green: 0
-                        blue: 0
-                      colorOverTime: []
-                      alphaOverTime: []
-                      blend: 0
-                    deathEmission:
-                      attack:
-                        lifetime: 0
-                        speed: 0
-                        inheritedVelocity: 0
-                        projectileCount: 0
-                        startAngle: 0
-                        angleGap: 0
-                        angleChange: 0
-                        minDamage: 0
-                        maxDamage: 0
-                        startRotation: 0
-                        armorIgnored: 0
-                        offset: {x: 0, y: 0}
-                      chance: 0
-                  chance: 0
-              chance: 0
-          chance: 0
-      chance: 0.25
+      minSize: 0
+      maxSize: 0
+      sizeOffset: 0
+      sizeChange: 0
+      rotateOffset: 0
+      rotateChange: 0
+      tintRed: 0
+      tintGreen: 0
+      tintBlue: 0
+      tintAlpha: 0
+      colorOffset: 0
+      colorChangeRed: 0
+      colorChangeGreen: 0
+      colorChangeBlue: 0
+      colorChangeAlpha: 0
+      alphaOffset: 0
+      alphaChange: 0
+      blend: 0
+    attackTime: 0
   emitters: []

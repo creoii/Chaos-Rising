@@ -1,17 +1,46 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ItemPickAndPlace : MonoBehaviour
+public class ItemPickAndPlace : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    [SerializeField] public Canvas canvas;
+
+    private RectTransform rectTransform;
     private Inventory inventory;
+    public bool draggable = false;
 
     private void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
         inventory = GetComponentInChildren<Inventory>();
     }
 
-    public void Pickup(ItemContainer itemContainer)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        itemContainer.draggable = true;
-        inventory.AddItem(inventory.transform, itemContainer);
+        print("collision");
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        print("down");
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        print("drag");
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        print("end drag");
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        print("drop");
     }
 }

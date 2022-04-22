@@ -1,42 +1,46 @@
 using ChaosRising;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileGenerator : MonoBehaviour
 {
-    public TargetType targetType;
-    public PositionType spawnPositionType;
-    public Attack attack;
-    public ParticleSystem[] emitters;
+    public Attack[] attacks;
+    public List<KeyValue<ParticleSystem>> emitters;
 
     private Stats stats;
     private PlayerController targetPlayer;
 
-    private float attackTime;
     private Vector3 directionToPlayer;
     private Vector3 mousePosition;
+
+    private UnityEngine.Color empty = new UnityEngine.Color(0f, 0f, 0f, 0f);
+    private UnityEngine.Color full = new UnityEngine.Color(1f, 1f, 1f, 1f);
 
     [System.Obsolete]
     private void Start()
     {
-        attack.startAngle += 90;
-        emitters = new ParticleSystem[attack.projectileCount];
+        emitters = new List<KeyValue<ParticleSystem>>();
         stats = GetComponentInParent<StatContainer>().stats;
         mousePosition = MouseUtility.GetMousePosition();
 
-        for (int i = 0; i < attack.projectileCount; ++i)
+        for (int i = 0; i < attacks.Length; ++i)
         {
-            GameObject obj = new GameObject(name + i);
-            obj.transform.parent = transform;
-            CreateGenerator(i, attack, obj.AddComponent<ParticleSystem>(), false);
+            attacks[i].startAngle += 90;
+            for (int j = 0; j < attacks[i].projectileCount; ++j)
+            {
+                GameObject obj = new GameObject(name + i + j);
+                obj.transform.parent = transform;
+                CreateGenerator(i, attacks[i], obj.AddComponent<ParticleSystem>(), false);
+            }
         }
     }
 
     [System.Obsolete]
     private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, bool sub)
     {
-        if (!sub) emitters[index] = particleSystem;
+        if (!sub) emitters.Add(new KeyValue<ParticleSystem>(index, particleSystem));
 
-        particleSystem.transform.position = spawnPositionType == PositionType.Origin ? transform.parent.position : mousePosition;
+        particleSystem.transform.position = attack.spawnPositionType == PositionType.Origin ? transform.parent.position : mousePosition;
         particleSystem.transform.position += new Vector3(attack.offset.x, attack.offset.y, 0f);
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
@@ -46,10 +50,14 @@ public class ProjectileGenerator : MonoBehaviour
         particleSystem.startLifetime = attack.lifetime;
 
         #region Tint
-        UnityEngine.Color tint = attack.display.tint.ToColor();
-        if (tint != UnityEngine.Color.white)
+        UnityEngine.Color tint = new Color(attack.display.tintRed, attack.display.tintGreen, attack.display.tintBlue, attack.display.tintAlpha);
+        if (tint != empty)
         {
             particleSystem.startColor = tint;
+        }
+        else
+        {
+            particleSystem.startColor = UnityEngine.Color.white;
         }
         #endregion
 
@@ -130,54 +138,42 @@ public class ProjectileGenerator : MonoBehaviour
         #endregion
 
         #region Size Over Time
-        if (attack.display.sizeOverTime.Length > 0)
+        if (attack.display.sizeChange > 0f)
         {
             ParticleSystem.SizeOverLifetimeModule sizeOverLifetime = particleSystem.sizeOverLifetime;
             sizeOverLifetime.enabled = true;
-            Keyframe[] sizes = new Keyframe[attack.display.sizeOverTime.Length];
-            for (int i = 0; i < attack.display.sizeOverTime.Length; ++i)
-            {
-                KeyValue<float> kv = attack.display.sizeOverTime[i];
-                sizes[i] = new Keyframe(kv.key, kv.value);
-            }
+            Keyframe[] sizes = new Keyframe[2];
+            sizes[0] = new Keyframe(0f, 0f);
+            sizes[0] = new Keyframe(attack.display.sizeOffset, attack.display.sizeChange);
             sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(sizes));
         }
         #endregion
 
         #region Rotate Over Time
-        if (attack.display.rotateOverTime.Length > 0)
+        if (attack.display.rotateChange > 0f)
         {
             ParticleSystem.RotationOverLifetimeModule rotationOverLifetime = particleSystem.rotationOverLifetime;
             rotationOverLifetime.enabled = true;
-            Keyframe[] rotations = new Keyframe[attack.display.rotateOverTime.Length];
-            for (int i = 0; i < attack.display.rotateOverTime.Length; ++i)
-            {
-                KeyValue<float> kv = attack.display.rotateOverTime[i];
-                rotations[i] = new Keyframe(kv.key, kv.value);
-            }
+            Keyframe[] rotations = new Keyframe[2];
+            rotations[0] = new Keyframe(0f, 0f);
+            rotations[0] = new Keyframe(attack.display.rotateOffset, attack.display.rotateChange);
             rotationOverLifetime.z = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(rotations));
         }
         #endregion
 
         #region Color Over Time
-        if (attack.display.colorOverTime.Length > 0)
+        if (attack.display.alphaChange > 0f)
         {
             ParticleSystem.ColorOverLifetimeModule colorOverLifetime = particleSystem.colorOverLifetime;
             colorOverLifetime.enabled = true;
 
-            GradientColorKey[] colors = new GradientColorKey[attack.display.colorOverTime.Length];
-            for (int i = 0; i < attack.display.colorOverTime.Length; ++i)
-            {
-                KeyValue<ChaosRising.Color> kv = attack.display.colorOverTime[i];
-                colors[i] = new GradientColorKey(kv.value.ToColor(), kv.key);
-            }
+            GradientColorKey[] colors = new GradientColorKey[2];
+            colors[0] = new GradientColorKey(full, 0f);
+            colors[1] = new GradientColorKey(new Color(attack.display.colorChangeRed, attack.display.colorChangeGreen, attack.display.colorChangeBlue, attack.display.colorChangeAlpha), attack.display.colorOffset);
 
-            GradientAlphaKey[] alphas = new GradientAlphaKey[attack.display.alphaOverTime.Length];
-            for (int i = 0; i < attack.display.alphaOverTime.Length; ++i)
-            {
-                KeyValue<float> kv = attack.display.alphaOverTime[i];
-                alphas[i] = new GradientAlphaKey(kv.value, kv.key);
-            }
+            GradientAlphaKey[] alphas = new GradientAlphaKey[2];
+            alphas[0] = new GradientAlphaKey(0f, 0f);
+            alphas[1] = new GradientAlphaKey(attack.display.alphaChange, attack.display.alphaOffset);
 
             Gradient gradient = new Gradient();
             if (!attack.display.blend) gradient.mode = GradientMode.Fixed;
@@ -187,29 +183,19 @@ public class ProjectileGenerator : MonoBehaviour
         #endregion
 
         #region Acceleration
+
         ParticleSystem.VelocityOverLifetimeModule velocityOverLifetime = particleSystem.velocityOverLifetime;
         velocityOverLifetime.enabled = true;
         velocityOverLifetime.space = ParticleSystemSimulationSpace.World;
-
-        KeyValue<float>[] accelerations = attack.acceleration.accelerations;
-        Keyframe[] accKeyFrame = new Keyframe[accelerations.Length];
-        if (accelerations.Length > 0)
-        {
-            for (int i = 0; i < attack.acceleration.accelerations.Length; ++i)
-            {
-                KeyValue<float> kv = attack.acceleration.accelerations[i];
-                accKeyFrame[i] = new Keyframe(kv.key, kv.value);
-            }
-        }
-        else
-        {
-            accKeyFrame = new Keyframe[1]
-            {
-                new Keyframe(0f, 1f),
-            };
-        }
         
-        velocityOverLifetime.speedModifier = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(accKeyFrame));
+        if (attack.acceleration.acceleration > 0f)
+        {
+            Keyframe[] accKeyFrame = new Keyframe[2];
+            accKeyFrame[0] = new Keyframe(0f, 0f);
+            accKeyFrame[1] = new Keyframe(attack.acceleration.offset, attack.acceleration.acceleration);
+            velocityOverLifetime.speedModifier = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(accKeyFrame));
+        }
+
 
         if (attack.acceleration.max >= 0f)
         {
@@ -221,65 +207,24 @@ public class ProjectileGenerator : MonoBehaviour
         }
         #endregion
 
-        #region Arc
-        if (attack.arc.xVelocities.Length > 0)
-        {
-            Keyframe[] xVelocities = new Keyframe[attack.arc.xVelocities.Length];
-            for (int i = 0; i < attack.arc.xVelocities.Length; ++i)
-            {
-                KeyValue<float> kv = attack.arc.xVelocities[i];
-                xVelocities[i] = new Keyframe(kv.key, kv.value);
-            }
-            velocityOverLifetime.x = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(xVelocities));
-        }
-        else
-        {
-            velocityOverLifetime.x = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
-            {
-                new Keyframe(0f, 0f)
-            }));
-        }
-
-        if (attack.arc.yVelocities.Length > 0)
-        {
-            Keyframe[] yVelocities = new Keyframe[attack.arc.yVelocities.Length];
-            for (int i = 0; i < attack.arc.yVelocities.Length; ++i)
-            {
-                KeyValue<float> kv = attack.arc.yVelocities[i];
-                yVelocities[i] = new Keyframe(kv.key, kv.value);
-            }
-            velocityOverLifetime.y = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(yVelocities));
-        }
-        else
-        {
-            velocityOverLifetime.y = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
-            {
-                new Keyframe(0f, 0f)
-            }));
-        }
-
-        velocityOverLifetime.z = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe[]
-        {
-            new Keyframe(0f, 0f)
-        }));
-        #endregion
-
         #region Orbit
         velocityOverLifetime.orbitalYMultiplier = attack.orbit.speed;
         if (attack.orbit.radial) velocityOverLifetime.radial = 1;
+        #endregion
 
-        if (attack.deathEmission.attack != null && !sub)
-        {
-            GameObject obj = new GameObject(name + "_subEmitter");
-            obj.transform.parent = transform.GetChild(index);
+        #region Death Emission
+        //if (attack.deathEmission.attack != null && !sub && false)
+        //{
+        //    GameObject obj = new GameObject(name + "_subEmitter");
+        //    obj.transform.parent = transform.GetChild(index);
 
-            ParticleSystem subSystem = obj.AddComponent<ParticleSystem>();
-            CreateGenerator(-1, attack.deathEmission.attack, subSystem, true);
+        //    ParticleSystem subSystem = obj.AddComponent<ParticleSystem>();
+        //    CreateGenerator(-1, attack.deathEmission.attack, subSystem, true);
 
-            ParticleSystem.SubEmittersModule subEmitters = particleSystem.subEmitters;
-            subEmitters.enabled = true;
-            subEmitters.AddSubEmitter(subSystem, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing, attack.deathEmission.chance);
-        }
+        //    ParticleSystem.SubEmittersModule subEmitters = particleSystem.subEmitters;
+        //    subEmitters.enabled = true;
+        //    subEmitters.AddSubEmitter(subSystem, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing, attack.deathEmission.chance);
+        //}
         #endregion
     }
 
@@ -288,61 +233,53 @@ public class ProjectileGenerator : MonoBehaviour
         this.targetPlayer = targetPlayer;
     }
 
-    public void UpdateAttack()
+    public void UpdateAttacks()
     {
-        if ((attackTime -= Time.deltaTime) < 0f)
+        for (int i = 0; i < attacks.Length; ++i)
         {
-            ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
-            ParticleSystem.ShapeModule shape;
-
-            if (targetType == TargetType.Player)
+            Attack attack = attacks[i];
+            if ((attack.attackTime -= Time.deltaTime) < 0f)
             {
-                if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
-                else directionToPlayer = Vector3.zero;
-            }
+                ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
+                ParticleSystem.ShapeModule shape;
 
-            if (targetType == TargetType.Mouse)
-            {
-                mousePosition = MouseUtility.GetMousePosition();
-                print(mousePosition);
-            }
-
-            float angle = targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
-            if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
-            if (attack.startAngle >= 360) attack.startAngle -= 360;
-
-            for (int i = 0; i < emitters.Length; ++i)
-            {
-                if (spawnPositionType == PositionType.Mouse)
+                if (attack.targetType == TargetType.Player)
                 {
-                    emitters[i].transform.position = MouseUtility.GetMousePosition();
+                    if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
+                    else directionToPlayer = Vector3.zero;
                 }
 
-                shape = emitters[i].shape;
-                shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
-
-                if (attack.display.maxSize > 0)
+                if (attack.targetType == TargetType.Mouse)
                 {
-                    emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
+                    mousePosition = MouseUtility.GetMousePosition();
                 }
-                emission.rotation = attack.startRotation + angle;
+                
+                float angle = attack.targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : attack.targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
+                if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
+                if (attack.startAngle >= 360) attack.startAngle -= 360;
 
-                emitters[i].Emit(emission, 1);
-                attackTime = 1f / stats.dexterity;
+                ParticleSystem particleSystem;
+                for (int j = 0; j < emitters.Count; ++j)
+                {
+                    particleSystem = emitters[i].value;
+                    if (attack.spawnPositionType == PositionType.Mouse)
+                    {
+                        particleSystem.transform.position = MouseUtility.GetMousePosition();
+                    }
+
+                    shape = particleSystem.shape;
+                    shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
+
+                    if (attack.display.maxSize > 0)
+                    {
+                        emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
+                    }
+                    emission.rotation = attack.startRotation + angle;
+
+                    particleSystem.Emit(emission, 1);
+                    attack.attackTime = 1f / stats.dexterity;
+                }
             }
         }
-    }
-
-    public enum TargetType
-    {
-        Player,
-        Mouse,
-        Fixed
-    }
-
-    public enum PositionType
-    {
-        Origin,
-        Mouse
     }
 }

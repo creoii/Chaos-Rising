@@ -16,6 +16,6 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         projectileGenerator.SetTargetPlayer(targetPlayer);
-        projectileGenerator.UpdateAttack();
+        projectileGenerator.UpdateAttacks();
     }
 }

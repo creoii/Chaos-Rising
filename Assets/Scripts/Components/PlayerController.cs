@@ -12,17 +12,15 @@ public class PlayerController : MonoBehaviour
     private CircleCollider2D circle;
     private Stats stats;
     private ProjectileGenerator projectileGenerator;
-    private ItemPickAndPlace pickup;
 
     private void Start()
     {
-        fullMask = LayerMask.GetMask("Living", "Blocking", "Item");
+        fullMask = LayerMask.GetMask("Living", "Blocking", "LootContainer");
         collisionMask = LayerMask.GetMask("Living", "Blocking");
 
         circle = GetComponent<CircleCollider2D>();
         stats = GetComponent<StatContainer>().stats;
         projectileGenerator = GetComponentInChildren<ProjectileGenerator>();
-        pickup = GetComponentInChildren<ItemPickAndPlace>();
     }
 
     private void Update()
@@ -35,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            projectileGenerator.UpdateAttack();
+            projectileGenerator.UpdateAttacks();
         }
     }
 
@@ -45,9 +43,8 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
-            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("Item"))
+            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("LootContainer"))
             {
-                pickup.Pickup(hit.transform.gameObject.GetComponent<ItemContainer>());
             }
             else
             {
@@ -59,9 +56,8 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), fullMask);
         if (hit.collider != null)
         {
-            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("Item"))
+            if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("LootContainer"))
             {
-                pickup.Pickup(hit.transform.gameObject.GetComponent<ItemContainer>());
             }
             else
             {

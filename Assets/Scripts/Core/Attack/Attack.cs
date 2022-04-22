@@ -6,23 +6,27 @@ namespace ChaosRising
     [Serializable]
     public class Attack
     {
-        public float lifetime, speed, inheritedVelocity;
-        public int projectileCount, startAngle, angleGap, angleChange, minDamage, maxDamage, startRotation, armorIgnored;
+        public TargetType targetType;
+        public PositionType spawnPositionType;
+        public float lifetime, speed, rateOfFire, inheritedVelocity;
+        public int projectileCount, angleGap, startAngle, angleChange, minDamage, maxDamage, startRotation, armorIgnored;
         public Vector2 offset;
         public Acceleration acceleration;
         public Orbit orbit;
         public Burst[] bursts;
-        public Arc arc;
         public PingPong pingPong;
         public Collision collision;
         public Display display;
-        public DeathEmission deathEmission;
+        // public DeathEmission deathEmission;
+
+        [HideInInspector] public float attackTime;
     }
 
     [Serializable]
     public class Acceleration
     {
-        public KeyValue<float>[] accelerations;
+        public float offset;
+        public float acceleration;
         public float max;
     }
 
@@ -38,12 +42,6 @@ namespace ChaosRising
     {
         public int count, cycles;
         public float interval;
-    }
-
-    [Serializable]
-    public class Arc
-    {
-        public KeyValue<float>[] xVelocities, yVelocities;
     }
 
     [Serializable]
@@ -64,25 +62,24 @@ namespace ChaosRising
     public class Display
     {
         public float minSize, maxSize;
-        public KeyValue<float>[] sizeOverTime;
+        public float sizeOffset;
+        public float sizeChange;
 
-        public KeyValue<float>[] rotateOverTime;
+        public float rotateOffset;
+        public float rotateChange;
 
-        public Color tint;
-        public KeyValue<Color>[] colorOverTime;
-        public KeyValue<float>[] alphaOverTime;
+        public float tintRed;
+        public float tintGreen;
+        public float tintBlue;
+        public float tintAlpha;
+        public float colorOffset;
+        public float colorChangeRed;
+        public float colorChangeGreen;
+        public float colorChangeBlue;
+        public float colorChangeAlpha;
+        public float alphaOffset;
+        public float alphaChange;
         public bool blend;
-    }
-
-    [Serializable]
-    public class Color
-    {
-        public float red, green, blue;
-
-        public UnityEngine.Color ToColor()
-        {
-            return new UnityEngine.Color(red, green, blue);
-        }
     }
 
     [Serializable]
@@ -97,5 +94,24 @@ namespace ChaosRising
     {
         public float key;
         public T value;
+
+        public KeyValue(float key, T value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    public enum TargetType
+    {
+        Player,
+        Mouse,
+        Fixed
+    }
+
+    public enum PositionType
+    {
+        Origin,
+        Mouse
     }
 }
