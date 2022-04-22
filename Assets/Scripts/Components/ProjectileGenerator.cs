@@ -254,13 +254,12 @@ public class ProjectileGenerator : MonoBehaviour
                 {
                     if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
                     else directionToPlayer = Vector3.zero;
-
-                    if (attack.targetPrediction > 0f)
+                    
+                    angle = MathUtility.ToAngle(directionToPlayer);
+                    if (attack.targetPrediction != 0f)
                     {
-                        directionToPlayer += targetPlayer.movement * targetPlayer.stats.speed * attack.targetPrediction;
+                        angle = MathUtility.ToAngle((directionToPlayer + targetPlayer.movement.normalized) * attack.targetPrediction);
                     }
-
-                    angle = Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg;
                 }
 
                 if (attack.targetType == TargetType.Mouse)

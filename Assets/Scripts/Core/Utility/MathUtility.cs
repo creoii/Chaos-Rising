@@ -11,5 +11,10 @@ namespace ChaosRising
         {
             return new Vector3(from.x + Mathf.Cos(angle * Deg2Rad), from.y + Mathf.Sin(angle * Deg2Rad)).normalized;
         }
+
+        public static float ToAngle(Vector3 vec)
+        {
+            return Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
+        }
     }
 }
