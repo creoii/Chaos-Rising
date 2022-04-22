@@ -25,6 +25,7 @@ public class ProjectileGenerator : MonoBehaviour
 
         for (int i = 0; i < attacks.Length; ++i)
         {
+            //                    += 90 ;
             attacks[i].startAngle += 90;
             for (int j = 0; j < attacks[i].projectileCount; ++j)
             {
