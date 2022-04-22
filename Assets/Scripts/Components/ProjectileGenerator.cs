@@ -235,49 +235,66 @@ public class ProjectileGenerator : MonoBehaviour
 
     public void UpdateAttacks()
     {
+        Attack attack;
         for (int i = 0; i < attacks.Length; ++i)
         {
-            Attack attack = attacks[i];
+            attack = attacks[i];
             if ((attack.attackTime -= Time.deltaTime) < 0f)
             {
                 ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
                 ParticleSystem.ShapeModule shape;
 
+                float angle = 0f;
+                if (attack.targetType == TargetType.Fixed)
+                {
+                    angle = attack.startAngle += attack.angleChange;
+                }
+
                 if (attack.targetType == TargetType.Player)
                 {
                     if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
                     else directionToPlayer = Vector3.zero;
+
+                    if (attack.targetPrediction > 0f)
+                    {
+                        directionToPlayer += targetPlayer.movement * targetPlayer.stats.speed * attack.targetPrediction;
+                    }
+
+                    angle = Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg;
                 }
 
                 if (attack.targetType == TargetType.Mouse)
                 {
                     mousePosition = MouseUtility.GetMousePosition();
+                    angle = MouseUtility.GetMouseAngle(transform.position, false);
                 }
                 
-                float angle = attack.targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : attack.targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
                 if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
                 if (attack.startAngle >= 360) attack.startAngle -= 360;
 
                 ParticleSystem particleSystem;
                 for (int j = 0; j < emitters.Count; ++j)
                 {
-                    particleSystem = emitters[i].value;
-                    if (attack.spawnPositionType == PositionType.Mouse)
+                    if (emitters[j].key == i)
                     {
-                        particleSystem.transform.position = MouseUtility.GetMousePosition();
+                        particleSystem = emitters[j].value;
+                        if (attack.spawnPositionType == PositionType.Mouse)
+                        {
+                            particleSystem.transform.position = MouseUtility.GetMousePosition();
+                        }
+
+                        shape = particleSystem.shape;
+                        shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
+
+                        if (attack.display.maxSize > 0)
+                        {
+                            emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
+                        }
+                        emission.rotation = attack.startRotation + angle;
+
+                        particleSystem.Emit(emission, 1);
+                        attack.attackTime = 1f / stats.dexterity;
                     }
-
-                    shape = particleSystem.shape;
-                    shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
-
-                    if (attack.display.maxSize > 0)
-                    {
-                        emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
-                    }
-                    emission.rotation = attack.startRotation + angle;
-
-                    particleSystem.Emit(emission, 1);
-                    attack.attackTime = 1f / stats.dexterity;
                 }
             }
         }

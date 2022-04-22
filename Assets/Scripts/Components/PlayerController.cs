@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
     private static LayerMask fullMask, collisionMask;
 
     private RaycastHit2D hit;
-    private Vector3 movement;
+    [HideInInspector] public Vector3 movement;
 
     private CircleCollider2D circle;
-    private Stats stats;
+    [HideInInspector] public Stats stats;
     private ProjectileGenerator projectileGenerator;
 
     private void Start()
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // collide on y axis
-        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), fullMask);
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(0f, movement.y), Mathf.Abs(movement.y * Time.fixedDeltaTime), collisionMask);
         if (hit.collider != null)
         {
             if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("LootContainer"))
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // collide on x axis
-        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), fullMask);
+        hit = Physics2D.CircleCast(transform.position, circle.radius, new Vector2(movement.x, 0f), Mathf.Abs(movement.x * Time.fixedDeltaTime), collisionMask);
         if (hit.collider != null)
         {
             if (LayerMask.LayerToName(hit.transform.gameObject.layer).Equals("LootContainer"))
