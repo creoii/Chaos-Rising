@@ -295,9 +295,17 @@ public class ProjectileGenerator : MonoBehaviour
             ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
             ParticleSystem.ShapeModule shape;
 
-            if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
-            else directionToPlayer = Vector3.zero;
-            mousePosition = MouseUtility.GetMousePosition();
+            if (targetType == TargetType.Player)
+            {
+                if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
+                else directionToPlayer = Vector3.zero;
+            }
+
+            if (targetType == TargetType.Mouse)
+            {
+                mousePosition = MouseUtility.GetMousePosition();
+                print(mousePosition);
+            }
 
             float angle = targetType == TargetType.Fixed ? attack.startAngle += attack.angleChange : targetType == TargetType.Mouse ? MouseUtility.GetMouseAngle(transform.position, false) : (Mathf.Atan2(directionToPlayer.x, directionToPlayer.y) * Mathf.Rad2Deg);
             if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
@@ -305,6 +313,11 @@ public class ProjectileGenerator : MonoBehaviour
 
             for (int i = 0; i < emitters.Length; ++i)
             {
+                if (spawnPositionType == PositionType.Mouse)
+                {
+                    emitters[i].transform.position = MouseUtility.GetMousePosition();
+                }
+
                 shape = emitters[i].shape;
                 shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
 

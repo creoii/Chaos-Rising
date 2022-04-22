@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class Inventory : MonoBehaviour
     {
         if (index >= 0 && index < slots.Count)
         {
-            return slots[index].item = item;
+            return slots[index].SetItem(item);
         }
         return item;
     }
@@ -42,7 +43,7 @@ public class Inventory : MonoBehaviour
         {
             if (slots[i] == null)
             {
-                slots[i].item = item;
+                slots[i].SetItem(item);
             }
         }
     }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private CircleCollider2D circle;
     private Stats stats;
     private ProjectileGenerator projectileGenerator;
-    private ItemPickup pickup;
+    private ItemPickAndPlace pickup;
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         circle = GetComponent<CircleCollider2D>();
         stats = GetComponent<StatContainer>().stats;
         projectileGenerator = GetComponentInChildren<ProjectileGenerator>();
-        pickup = GetComponentInChildren<ItemPickup>();
+        pickup = GetComponentInChildren<ItemPickAndPlace>();
     }
 
     private void Update()

@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class ItemContainer : MonoBehaviour
 {
     public ChaosRising.Item item;
     public bool draggable = false;
 
-    private Image image;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         item = new ChaosRising.Item("inquisition");
 
-        image = GetComponent<Image>();
-        image.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + item.sprite);
     }
 
     private void OnMouseDrag()
@@ -22,13 +22,15 @@ public class ItemContainer : MonoBehaviour
         if (draggable)
         {
             transform.position = ChaosRising.MouseUtility.GetMousePosition();
+            spriteRenderer.sortingLayerName = "UI";
         }
     }
 
     private void OnMouseUp()
-    {
+    {        
         if (draggable)
         {
+            spriteRenderer.sortingLayerName = "Item";
             draggable = false;
         }
     }
