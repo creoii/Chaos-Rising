@@ -11045,7 +11045,7 @@ MonoBehaviour:
       collision:
         dampen: 0
         bounce: 0
-        lifetimeLoss: 0
+        lifetimeLoss: 1
       display:
         minSize: 0
         maxSize: 0
@@ -11097,7 +11097,62 @@ MonoBehaviour:
       collision:
         dampen: 0
         bounce: 0
-        lifetimeLoss: 0
+        lifetimeLoss: 1
+      display:
+        minSize: 0
+        maxSize: 0
+        sizeOffset: 0
+        sizeChange: 0
+        rotateOffset: 0
+        rotateChange: 0
+        tintRed: 0
+        tintGreen: 0
+        tintBlue: 0
+        tintAlpha: 0
+        colorOffset: 0
+        colorChangeRed: 0
+        colorChangeGreen: 0
+        colorChangeBlue: 0
+        colorChangeAlpha: 0
+        alphaOffset: 0
+        alphaChange: 0
+        blend: 0
+      attackTime: 0
+  - duration: 5
+    delay: 2
+    attacks:
+    - targetType: 2
+      spawnPositionType: 0
+      lifetime: 2
+      speed: 1
+      rateOfFire: 0
+      targetPrediction: 0
+      inheritedVelocity: 0
+      projectileCount: 9
+      angleGap: 40
+      startAngle: 0
+      angleChange: 0
+      minDamage: 20
+      maxDamage: 35
+      startRotation: -45
+      armorIgnored: 0
+      offset: {x: 0, y: 0}
+      acceleration:
+        offset: 0
+        acceleration: 0
+        max: 0
+      orbit:
+        speed: 0
+        radial: 0
+      bursts: []
+      pingPong:
+        width: 0
+        speed: 0
+        spread: 0
+      collision:
+        dampen: 0
+        bounce: 0
+        lifetimeLoss: 1
       display:
         minSize: 0
         maxSize: 0
@@ -11163,111 +11218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea59c3fd2fb55141952da69c681a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacks:
-  - targetType: 0
-    spawnPositionType: 0
-    lifetime: 2
-    speed: 1
-    rateOfFire: 0
-    targetPrediction: 0
-    inheritedVelocity: 0
-    projectileCount: 2
-    angleGap: 180
-    startAngle: 0
-    angleChange: 0
-    minDamage: 10
-    maxDamage: 20
-    startRotation: -45
-    armorIgnored: 0
-    offset: {x: 0, y: 0}
-    acceleration:
-      offset: 0
-      acceleration: 0
-      max: 0
-    orbit:
-      speed: 0
-      radial: 0
-    bursts: []
-    pingPong:
-      width: 0
-      speed: 0
-      spread: 0
-    collision:
-      dampen: 0
-      bounce: 0
-      lifetimeLoss: 1
-    display:
-      minSize: 0
-      maxSize: 0
-      sizeOffset: 0
-      sizeChange: 0
-      rotateOffset: 0
-      rotateChange: 0
-      tintRed: 0
-      tintGreen: 0
-      tintBlue: 0
-      tintAlpha: 0
-      colorOffset: 0
-      colorChangeRed: 0
-      colorChangeGreen: 0
-      colorChangeBlue: 0
-      colorChangeAlpha: 0
-      alphaOffset: 0
-      alphaChange: 0
-      blend: 0
-    attackTime: 0
-  - targetType: 2
-    spawnPositionType: 0
-    lifetime: 2
-    speed: 1
-    rateOfFire: 0
-    targetPrediction: 0
-    inheritedVelocity: 0
-    projectileCount: 6
-    angleGap: 60
-    startAngle: 0
-    angleChange: 1
-    minDamage: 25
-    maxDamage: 40
-    startRotation: -45
-    armorIgnored: 0
-    offset: {x: 0, y: 0}
-    acceleration:
-      offset: 0
-      acceleration: 0
-      max: 0
-    orbit:
-      speed: 0
-      radial: 0
-    bursts: []
-    pingPong:
-      width: 0
-      speed: 0
-      spread: 0
-    collision:
-      dampen: 0
-      bounce: 0
-      lifetimeLoss: 1
-    display:
-      minSize: 0
-      maxSize: 0
-      sizeOffset: 0
-      sizeChange: 0
-      rotateOffset: 0
-      rotateChange: 0
-      tintRed: 0
-      tintGreen: 0
-      tintBlue: 0
-      tintAlpha: 0
-      colorOffset: 0
-      colorChangeRed: 0
-      colorChangeGreen: 0
-      colorChangeBlue: 0
-      colorChangeAlpha: 0
-      alphaOffset: 0
-      alphaChange: 0
-      blend: 0
-    attackTime: 0
+  attacks: []
   emitters: []
 --- !u!1 &2088223491
 GameObject:
@@ -11325,8 +11276,8 @@ MonoBehaviour:
     angleGap: 20
     startAngle: 0
     angleChange: 0
-    minDamage: 10
-    maxDamage: 25
+    minDamage: 20
+    maxDamage: 40
     startRotation: -45
     armorIgnored: 0
     offset: {x: 0, y: 0}

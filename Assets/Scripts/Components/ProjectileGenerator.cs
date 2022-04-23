@@ -30,15 +30,15 @@ public class ProjectileGenerator : MonoBehaviour
             {
                 GameObject obj = new GameObject(name + i + j);
                 obj.transform.parent = transform;
-                CreateGenerator(i, attacks[i], obj.AddComponent<ParticleSystem>(), false);
+                CreateGenerator(i, attacks[i], obj.AddComponent<ParticleSystem>());
             }
         }
     }
 
     [System.Obsolete]
-    private void CreateGenerator(int index, Attack attack, ParticleSystem particleSystem, bool sub)
+    private void CreateGenerator(int attackIndex, Attack attack, ParticleSystem particleSystem)
     {
-        if (!sub) emitters.Add(new KeyValue<ParticleSystem>(index, particleSystem));
+        emitters.Add(new KeyValue<ParticleSystem>(attackIndex, particleSystem));
 
         particleSystem.transform.position = attack.spawnPositionType == PositionType.Origin ? transform.parent.position : mousePosition;
         particleSystem.transform.position += new Vector3(attack.offset.x, attack.offset.y, 0f);
@@ -233,69 +233,73 @@ public class ProjectileGenerator : MonoBehaviour
         this.targetPlayer = targetPlayer;
     }
 
-    public void UpdateAttacks()
+    public void UpdateAttack(int attackIndex)
     {
-        Attack attack;
-        for (int i = 0; i < attacks.Length; ++i)
+        Attack attack = attacks[attackIndex];
+        if ((attack.attackTime -= Time.deltaTime) < 0f)
         {
-            attack = attacks[i];
-            if ((attack.attackTime -= Time.deltaTime) < 0f)
+            ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
+            ParticleSystem.ShapeModule shape;
+
+            float angle = 0f;
+            if (attack.targetType == TargetType.Fixed)
             {
-                ParticleSystem.EmitParams emission = new ParticleSystem.EmitParams();
-                ParticleSystem.ShapeModule shape;
+                angle = attack.startAngle += attack.angleChange;
+            }
 
-                float angle = 0f;
-                if (attack.targetType == TargetType.Fixed)
+            if (attack.targetType == TargetType.Player)
+            {
+                if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
+                else directionToPlayer = Vector3.zero;
+
+                angle = MathUtility.ToAngle(directionToPlayer);
+                if (attack.targetPrediction != 0f)
                 {
-                    angle = attack.startAngle += attack.angleChange;
-                }
-
-                if (attack.targetType == TargetType.Player)
-                {
-                    if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
-                    else directionToPlayer = Vector3.zero;
-                    
-                    angle = MathUtility.ToAngle(directionToPlayer);
-                    if (attack.targetPrediction != 0f)
-                    {
-                        angle = MathUtility.ToAngle((directionToPlayer + targetPlayer.movement.normalized) * attack.targetPrediction);
-                    }
-                }
-
-                if (attack.targetType == TargetType.Mouse)
-                {
-                    mousePosition = MouseUtility.GetMousePosition();
-                    angle = MouseUtility.GetMouseAngle(transform.position, false);
-                }
-                
-                if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
-                if (attack.startAngle >= 360) attack.startAngle -= 360;
-
-                ParticleSystem particleSystem;
-                for (int j = 0; j < emitters.Count; ++j)
-                {
-                    if (emitters[j].key == i)
-                    {
-                        particleSystem = emitters[j].value;
-                        if (attack.spawnPositionType == PositionType.Mouse)
-                        {
-                            particleSystem.transform.position = MouseUtility.GetMousePosition();
-                        }
-
-                        shape = particleSystem.shape;
-                        shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
-
-                        if (attack.display.maxSize > 0)
-                        {
-                            emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
-                        }
-                        emission.rotation = attack.startRotation + angle;
-
-                        particleSystem.Emit(emission, 1);
-                        attack.attackTime = 1f / stats.dexterity;
-                    }
+                    angle = MathUtility.ToAngle((directionToPlayer + targetPlayer.movement.normalized) * attack.targetPrediction);
                 }
             }
+
+            if (attack.targetType == TargetType.Mouse)
+            {
+                mousePosition = MouseUtility.GetMousePosition();
+                angle = MouseUtility.GetMouseAngle(transform.position, false);
+            }
+
+            if (attack.projectileCount > 1) angle -= attack.angleGap * (((attack.projectileCount - 1) / 2f) + 1);
+            if (attack.startAngle >= 360) attack.startAngle -= 360;
+
+            ParticleSystem particleSystem;
+            for (int j = 0; j < emitters.Count; ++j)
+            {
+                if (emitters[j].key == attackIndex)
+                {
+                    particleSystem = emitters[j].value;
+                    if (attack.spawnPositionType == PositionType.Mouse)
+                    {
+                        particleSystem.transform.position = MouseUtility.GetMousePosition();
+                    }
+
+                    shape = particleSystem.shape;
+                    shape.rotation = new Vector3(0f, angle += attack.angleGap, 0f);
+
+                    if (attack.display.maxSize > 0)
+                    {
+                        emission.startSize = Random.Range(attack.display.minSize, attack.display.maxSize);
+                    }
+                    emission.rotation = attack.startRotation + angle;
+
+                    particleSystem.Emit(emission, 1);
+                    attack.attackTime = 1f / stats.dexterity;
+                }
+            }
+        }
+    }
+
+    public void UpdateAttacks()
+    {
+        for (int i = 0; i < attacks.Length; ++i)
+        {
+            UpdateAttack(i);
         }
     }
 }
