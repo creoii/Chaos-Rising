@@ -41,7 +41,7 @@ public class ProjectileGenerator : MonoBehaviour
         emitters.Add(new KeyValue<ParticleSystem>(attackIndex, particleSystem));
 
         particleSystem.transform.position = attack.spawnPositionType == PositionType.Origin ? transform.parent.position : mousePosition;
-        particleSystem.transform.position += new Vector3(attack.offset.x, attack.offset.y, 0f);
+        particleSystem.transform.position += new Vector3(attack.offset.x  / 10f, attack.offset.y / 10f, 0f);
         particleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         particleSystem.loop = false;
@@ -246,20 +246,21 @@ public class ProjectileGenerator : MonoBehaviour
             {
                 angle = attack.startAngle += attack.angleChange;
             }
-
-            if (attack.targetType == TargetType.Player)
+            else if (attack.targetType == TargetType.Player)
             {
                 if (targetPlayer != null) directionToPlayer = targetPlayer.transform.position - gameObject.transform.position;
                 else directionToPlayer = Vector3.zero;
 
-                angle = MathUtility.ToAngle(directionToPlayer);
                 if (attack.targetPrediction != 0f)
                 {
                     angle = MathUtility.ToAngle((directionToPlayer + targetPlayer.movement.normalized) * attack.targetPrediction);
                 }
+                else
+                {
+                    angle = MathUtility.ToAngle(directionToPlayer);
+                }
             }
-
-            if (attack.targetType == TargetType.Mouse)
+            else if (attack.targetType == TargetType.Mouse)
             {
                 mousePosition = MouseUtility.GetMousePosition();
                 angle = MouseUtility.GetMouseAngle(transform.position, false);
@@ -289,7 +290,7 @@ public class ProjectileGenerator : MonoBehaviour
                     emission.rotation = attack.startRotation + angle;
 
                     particleSystem.Emit(emission, 1);
-                    attack.attackTime = 1f / stats.dexterity;
+                    attack.attackTime = 1f / (stats.dexterity * attack.rateOfFire);
                 }
             }
         }
