@@ -9467,7 +9467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 10000
+    maxHealth: 1000
     maxMagic: 250
     speed: 1
     dexterity: 15
@@ -9682,6 +9682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575380091}
   - component: {fileID: 1575380090}
+  - component: {fileID: 1575380092}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -9718,6 +9719,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575380092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575380089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b6a1b27c4b86a4d8c1d7d74616d6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 946509981}
+  wall: {fileID: 1750181229}
+  groundTiles:
+  - {fileID: 11400000, guid: 8efcd275d159d4641b721711c62d117e, type: 2}
+  - {fileID: 11400000, guid: f927a5c3b0ed667438c3b0ca7a0adee3, type: 2}
+  wallTiles:
+  - {fileID: 11400000, guid: 058e1ffb9de24724eac2157c66702c82, type: 2}
+  - {fileID: 11400000, guid: e933ef762b1bec144985e78dbf2792ca, type: 2}
+  room:
+    position: {x: 10, y: 10}
+    minWidth: 4
+    maxWidth: 8
+    minHeight: 5
+    maxHeight: 10
+    boundOffsetX: 1
+    boundOffsetY: 1
+    bounds: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1750181225
 GameObject:
   m_ObjectHideFlags: 0
@@ -11121,7 +11151,7 @@ MonoBehaviour:
       projectile: void_bolt
       lifetime: 2
       speed: 1
-      rateOfFire: 0
+      rateOfFire: 1
       targetPrediction: 0
       inheritedVelocity: 0
       projectileCount: 2
@@ -11174,7 +11204,7 @@ MonoBehaviour:
       projectile: void_bolt
       lifetime: 2
       speed: 1.5
-      rateOfFire: 0
+      rateOfFire: 1
       targetPrediction: 0
       inheritedVelocity: 0
       projectileCount: 6
@@ -11230,11 +11260,11 @@ MonoBehaviour:
       projectile: void_bolt
       lifetime: 2
       speed: 1
-      rateOfFire: 0
+      rateOfFire: 0.25
       targetPrediction: 0
       inheritedVelocity: 0
-      projectileCount: 9
-      angleGap: 40
+      projectileCount: 12
+      angleGap: 30
       startAngle: 0
       angleChange: 0
       minDamage: 20
@@ -11242,6 +11272,112 @@ MonoBehaviour:
       startRotation: -45
       armorIgnored: 0
       offset: {x: 0, y: 0}
+      acceleration:
+        offset: 0
+        acceleration: 0
+        max: 0
+      orbit:
+        speed: 0
+        radial: 0
+      bursts: []
+      pingPong:
+        width: 0
+        speed: 0
+        spread: 0
+      collision:
+        dampen: 0
+        bounce: 0
+        lifetimeLoss: 1
+      display:
+        minSize: 0
+        maxSize: 0
+        sizeOffset: 0
+        sizeChange: 0
+        rotateOffset: 0
+        rotateChange: 0
+        tintRed: 0
+        tintGreen: 0
+        tintBlue: 0
+        tintAlpha: 0
+        colorOffset: 0
+        colorChangeRed: 0
+        colorChangeGreen: 0
+        colorChangeBlue: 0
+        colorChangeAlpha: 0
+        alphaOffset: 0
+        alphaChange: 0
+        blend: 0
+      attackTime: 0
+    - targetType: 2
+      spawnPositionType: 0
+      projectile: void_bolt
+      lifetime: 2
+      speed: 1
+      rateOfFire: 0.25
+      targetPrediction: 0
+      inheritedVelocity: 0
+      projectileCount: 12
+      angleGap: 30
+      startAngle: 0
+      angleChange: 0
+      minDamage: 20
+      maxDamage: 35
+      startRotation: -45
+      armorIgnored: 0
+      offset: {x: 1, y: 1}
+      acceleration:
+        offset: 0
+        acceleration: 0
+        max: 0
+      orbit:
+        speed: 0
+        radial: 0
+      bursts: []
+      pingPong:
+        width: 0
+        speed: 0
+        spread: 0
+      collision:
+        dampen: 0
+        bounce: 0
+        lifetimeLoss: 1
+      display:
+        minSize: 0
+        maxSize: 0
+        sizeOffset: 0
+        sizeChange: 0
+        rotateOffset: 0
+        rotateChange: 0
+        tintRed: 0
+        tintGreen: 0
+        tintBlue: 0
+        tintAlpha: 0
+        colorOffset: 0
+        colorChangeRed: 0
+        colorChangeGreen: 0
+        colorChangeBlue: 0
+        colorChangeAlpha: 0
+        alphaOffset: 0
+        alphaChange: 0
+        blend: 0
+      attackTime: 0
+    - targetType: 2
+      spawnPositionType: 0
+      projectile: void_bolt
+      lifetime: 2
+      speed: 1
+      rateOfFire: 0.25
+      targetPrediction: 0
+      inheritedVelocity: 0
+      projectileCount: 12
+      angleGap: 30
+      startAngle: 0
+      angleChange: 0
+      minDamage: 20
+      maxDamage: 35
+      startRotation: -45
+      armorIgnored: 0
+      offset: {x: -1, y: -1}
       acceleration:
         offset: 0
         acceleration: 0
@@ -11375,7 +11511,7 @@ MonoBehaviour:
     projectile: fire_bolt
     lifetime: 2
     speed: 1
-    rateOfFire: 0
+    rateOfFire: 1
     targetPrediction: 0
     inheritedVelocity: 0
     projectileCount: 2

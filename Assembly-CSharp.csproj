@@ -84,6 +84,10 @@
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Item\SigilItem.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
+    <Compile Include="Assets\Scripts\Components\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Core\Dungeon\Room.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\GenerationUtility.cs" />
+    <Compile Include="Assets\Scripts\Core\Dungeon\Dungeon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
