@@ -61,7 +61,6 @@ public class PhaseHolder : MonoBehaviour
         }
     }
 
-
     public Phase GetNextPhase(int current)
     {
         currentPhaseOffset += currentPhase.attacks.Length;

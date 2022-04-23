@@ -7,6 +7,8 @@ public class Living : MonoBehaviour
 {
     public int health, magic;
 
+    public event EventHandler<DamageEventArgs> onDamaged;
+
     [HideInInspector] public ChaosRising.Stats stats;
     [HideInInspector] public Dictionary<int, Action> statBars = new Dictionary<int, Action>();
 
@@ -18,6 +20,11 @@ public class Living : MonoBehaviour
         magic = stats.maxMagic;
     }
 
+    private void Start()
+    {
+        onDamaged += Living_onDamage;
+    }
+
     private void OnEnable()
     {
         if (stats != null)
@@ -27,13 +34,27 @@ public class Living : MonoBehaviour
         }
     }
 
-    public void Damage(int amount)
+    private void OnParticleCollision(GameObject other)
     {
-        if (health - amount <= 0)
+        ParticleSystem system = other.GetComponent<ParticleSystem>();
+
+        ParticleSystem.MinMaxCurve damageCurve = system.customData.GetVector(ParticleSystemCustomData.Custom1, 0);
+        int damage = UnityEngine.Random.Range((int)damageCurve.constantMin, (int)damageCurve.constantMax);
+        int armorIgnored = (int)system.customData.GetVector(ParticleSystemCustomData.Custom1, 1).constantMin;
+
+        if (onDamaged != null) onDamaged?.Invoke(this, new DamageEventArgs { damage = damage, armorIgnored = armorIgnored });
+    }
+
+    public void Living_onDamage(object sender, DamageEventArgs e)
+    {
+        if (e.armorIgnored >= stats.armor) e.damage += stats.armor;
+        else e.damage += e.armorIgnored;
+
+        if (health - e.damage <= 0)
         {
             Kill();
         }
-        else health -= amount;
+        else health -= e.damage;
 
         if (statBars.ContainsKey(0))
         {
@@ -41,12 +62,10 @@ public class Living : MonoBehaviour
         }
     }
 
-    public void Damage(int amount, int armorIgnored)
+    public class DamageEventArgs : EventArgs
     {
-        if (armorIgnored >= stats.armor) amount += stats.armor;
-        else amount += armorIgnored;
-
-        Damage(amount);
+        public int damage;
+        public int armorIgnored;
     }
 
     private void Kill()

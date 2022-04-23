@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Core\Item\ConsumableItem.cs" />
     <Compile Include="Assets\Scripts\Core\Phase\Phase.cs" />
     <Compile Include="Assets\Scripts\Components\StatContainer.cs" />
+    <Compile Include="Assets\Scripts\Core\AssetManager.cs" />
     <Compile Include="Assets\Scripts\Core\Item\AbilityItem.cs" />
     <Compile Include="Assets\Scripts\Components\LootContainer.cs" />
     <Compile Include="Assets\Scripts\Core\GameManager.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Item\SigilItem.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
-    <Compile Include="Assets\Scripts\Core\AssetManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
