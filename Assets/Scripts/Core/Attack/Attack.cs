@@ -8,6 +8,7 @@ namespace ChaosRising
     {
         public TargetType targetType;
         public PositionType spawnPositionType;
+        public string projectile;
         public float lifetime, speed, rateOfFire, targetPrediction, inheritedVelocity;
         public int projectileCount, angleGap, startAngle, angleChange, minDamage, maxDamage, startRotation, armorIgnored;
         public Vector2 offset;

@@ -115,7 +115,7 @@ public class ProjectileGenerator : MonoBehaviour
         ParticleSystem.TextureSheetAnimationModule textureSheetAnimation = particleSystem.textureSheetAnimation;
         textureSheetAnimation.enabled = true;
         textureSheetAnimation.mode = ParticleSystemAnimationMode.Sprites;
-        textureSheetAnimation.AddSprite(Resources.Load<Sprite>("Sprites/Projectiles/fire_bolt"));
+        textureSheetAnimation.AddSprite(AssetManager.GetProjectileSprite(attack.projectile));
         #endregion
 
         #region Collision

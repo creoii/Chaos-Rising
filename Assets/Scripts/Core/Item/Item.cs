@@ -14,7 +14,7 @@ namespace ChaosRising
             this.description = description;
         }
 
-        public Item(string name, string description) : this(name, "Items/" + name, description)
+        public Item(string name, string description) : this(name, name, description)
         {
         }
     }
