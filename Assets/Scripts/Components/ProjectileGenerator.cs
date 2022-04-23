@@ -13,8 +13,8 @@ public class ProjectileGenerator : MonoBehaviour
     private Vector3 directionToPlayer;
     private Vector3 mousePosition;
 
-    private UnityEngine.Color empty = new UnityEngine.Color(0f, 0f, 0f, 0f);
-    private UnityEngine.Color full = new UnityEngine.Color(1f, 1f, 1f, 1f);
+    private Color empty = new Color(0f, 0f, 0f, 0f);
+    private Color full = new Color(1f, 1f, 1f, 1f);
 
     [System.Obsolete]
     private void Start()

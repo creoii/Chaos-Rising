@@ -6,7 +6,7 @@ public class StatContainer : MonoBehaviour
 
     private Living living;
 
-    private void Start()
+    private void Awake()
     {
         living = GetComponent<Living>();
     }
