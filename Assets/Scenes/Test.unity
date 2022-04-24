@@ -1264,6 +1264,7 @@ MonoBehaviour:
   ground: {fileID: 1634073877}
   floor: {fileID: 946509981}
   wall: {fileID: 1238015728}
+  enemyPrefab: {fileID: 4698235270669989712, guid: 079186af2c24309409434cdfae8e694c, type: 3}
   groundTiles:
   - city_of_the_deserters_4
   - city_of_the_deserters_5
@@ -1287,13 +1288,14 @@ MonoBehaviour:
     boundOffsetX: 1
     boundOffsetY: 1
     bounds: {x: 0, y: 0, z: 0, w: 0}
-  roomChance: 0.25
+    enemyChance: 0.01
+  roomChance: 0.1
   randomWalkGenerator:
     iterations: 100
     walkLength: 100
     randomStart: 1
-    randomStartRange: {x: 0, y: 100}
-    allowDiagonals: 1
+    randomStartRange: {x: 0, y: 25}
+    allowDiagonalWalk: 0
 --- !u!1 &1634073876
 GameObject:
   m_ObjectHideFlags: 0

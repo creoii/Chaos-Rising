@@ -10,11 +10,11 @@ public class RandomWalkGenerator
     public int walkLength;
     public bool randomStart;
     public Vector2Int randomStartRange;
-    public bool allowDiagonals;
+    public bool allowDiagonalWalk;
 
     public HashSet<Vector2IntData<bool>> GenerateRandomWalk(Vector2Int start)
     {
-        return GenerateRandomWalk(start, iterations, walkLength, randomStart, randomStartRange, allowDiagonals);
+        return GenerateRandomWalk(start, iterations, walkLength, randomStart, randomStartRange, allowDiagonalWalk);
     }
 
     public static HashSet<Vector2IntData<bool>> GenerateRandomWalk(Vector2Int start, int iterations, int walkLength, bool randomStart, Vector2Int randomStartRange, bool allowDiagonals)
@@ -75,17 +75,17 @@ public class Direction
 
     public static Vector2Int GetRandomDirection(bool cardinal, bool intercardinal)
     {
-        if (cardinal)
+        if (cardinal && intercardinal)
+        {
+            return All[UnityEngine.Random.Range(0, All.Count)];
+        }
+        else if (cardinal && !intercardinal)
         {
             return Cardinal[UnityEngine.Random.Range(0, Cardinal.Count)];
         }
-        if (intercardinal)
+        else if (intercardinal && !cardinal)
         {
             return Intercardinal[UnityEngine.Random.Range(0, Intercardinal.Count)];
-        }
-        else if (cardinal && intercardinal)
-        {
-            return All[UnityEngine.Random.Range(0, All.Count)];
         }
         else
         {

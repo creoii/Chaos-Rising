@@ -48,11 +48,14 @@ public class DungeonGenerator : MonoBehaviour
             {
                 Vector3Int place = new Vector3Int(x, y, 0);
                 if (GenerationUtility.IsEdge(place, new Vector4(position.x, position.y, position.x + width, position.y + height))) wall.SetTile(place, wallTiles[Random.Range(0, wallTiles.Length)]);
-                else floor.SetTile(place, floorTiles[Random.Range(0, floorTiles.Length)]);
-
-                if (Random.Range(0f, 1f) <= room.enemyChance)
+                else
                 {
-                    Instantiate(enemyPrefab, floor.CellToWorld(place), Quaternion.identity, transform);
+                    floor.SetTile(place, floorTiles[Random.Range(0, floorTiles.Length)]);
+
+                    if (Random.Range(0f, 1f) <= room.enemyChance)
+                    {
+                        Instantiate(enemyPrefab, floor.CellToWorld(place), Quaternion.identity, transform);
+                    }
                 }
             }
         }
