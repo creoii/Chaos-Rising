@@ -52,7 +52,7 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (Random.Range(0f, 1f) <= room.enemyChance)
                 {
-                    Instantiate(enemyPrefab, transform);
+                    Instantiate(enemyPrefab, floor.CellToWorld(place), Quaternion.identity, transform);
                 }
             }
         }
