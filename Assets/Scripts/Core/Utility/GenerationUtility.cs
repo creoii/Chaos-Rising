@@ -6,7 +6,7 @@ namespace ChaosRising
 {
     public class GenerationUtility
     {
-        private static TileBase[] tiles = Resources.LoadAll<TileBase>("Palettes");
+        private static TileBase[] tiles = Resources.LoadAll<TileBase>("Tiles");
 
         public static TileBase GetTile(string name)
         {

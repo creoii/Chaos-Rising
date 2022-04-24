@@ -5,7 +5,6 @@ using ChaosRising;
 public class DungeonGenerator : MonoBehaviour
 {
     public Tilemap ground;
-    public Tilemap wall;
 
     public Room room;
 
@@ -17,7 +16,6 @@ public class DungeonGenerator : MonoBehaviour
     private void GenerateRoom(Room room)
     {
         TileBase[] groundTiles = GenerationUtility.GetTiles(room.groundTiles);
-        TileBase[] wallTiles = GenerationUtility.GetTiles(room.wallTiles);
 
         int width = Random.Range(room.minWidth, room.maxWidth);
         int height = Random.Range(room.minHeight, room.maxHeight);
@@ -28,9 +26,7 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int x = room.position.x; x < room.position.x + width; ++x)
             {
-                Vector3Int place = new Vector3Int(x, y, 0);
-                if (GenerationUtility.isEdge(place, new Vector4(room.position.x, room.position.y, room.position.x + width, room.position.y + height))) wall.SetTile(place, wallTiles[Random.Range(0, wallTiles.Length)]);
-                else ground.SetTile(place, groundTiles[Random.Range(0, groundTiles.Length)]);
+                ground.SetTile(new Vector3Int(x, y, 0), groundTiles[Random.Range(0, groundTiles.Length)]);
             }
         }
     }
