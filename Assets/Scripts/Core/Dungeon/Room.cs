@@ -6,8 +6,6 @@ namespace ChaosRising
     [Serializable]
     public class Room
     {
-        public Vector2Int position;
-
         public string[] groundTiles;
         public string[] wallTiles;
 
@@ -19,6 +17,8 @@ namespace ChaosRising
         public int boundOffsetX;
         public int boundOffsetY;
         public Vector4 bounds;
+
+        public float enemyChance;
 
         public Room(int minWidth, int maxWidth, int minHeight, int maxHeight, int boundOffsetX, int boundOffsetY)
         {

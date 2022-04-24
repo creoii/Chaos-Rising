@@ -62,12 +62,14 @@
     <Compile Include="Assets\Scripts\Components\StatBar.cs" />
     <Compile Include="Assets\Scripts\Core\Item\AccessoryItem.cs" />
     <Compile Include="Assets\Scripts\Core\Item\WeaponItem.cs" />
+    <Compile Include="Assets\Scripts\Core\Utility\GenerationUtility.cs" />
     <Compile Include="Assets\Scripts\Components\ProjectileGenerator.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MouseUtility.cs" />
     <Compile Include="Assets\Scripts\Components\ItemContainer.cs" />
     <Compile Include="Assets\Scripts\Core\Item\ConsumableItem.cs" />
     <Compile Include="Assets\Scripts\Core\Phase\Phase.cs" />
     <Compile Include="Assets\Scripts\Components\StatContainer.cs" />
+    <Compile Include="Assets\Scripts\Core\Dungeon\Room.cs" />
     <Compile Include="Assets\Scripts\Core\AssetManager.cs" />
     <Compile Include="Assets\Scripts\Core\Item\AbilityItem.cs" />
     <Compile Include="Assets\Scripts\Components\LootContainer.cs" />
@@ -75,19 +77,18 @@
     <Compile Include="Assets\Scripts\Components\Slot.cs" />
     <Compile Include="Assets\Scripts\Core\Attack\Attack.cs" />
     <Compile Include="Assets\Scripts\Core\Data\Stats.cs" />
+    <Compile Include="Assets\Scripts\Core\Dungeon\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\SpriteUtility.cs" />
     <Compile Include="Assets\Scripts\Components\PhaseHolder.cs" />
     <Compile Include="Assets\Scripts\Core\Item\Item.cs" />
+    <Compile Include="Assets\Scripts\Components\DungeonGenerator.cs" />
     <Compile Include="Assets\Scripts\Components\CameraController.cs" />
     <Compile Include="Assets\Scripts\Components\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Components\Inventory.cs" />
     <Compile Include="Assets\Scripts\Components\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Core\Item\SigilItem.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MathUtility.cs" />
-    <Compile Include="Assets\Scripts\Components\DungeonGenerator.cs" />
-    <Compile Include="Assets\Scripts\Core\Dungeon\Room.cs" />
-    <Compile Include="Assets\Scripts\Core\Utility\GenerationUtility.cs" />
-    <Compile Include="Assets\Scripts\Core\Dungeon\Dungeon.cs" />
+    <Compile Include="Assets\Scripts\Core\Dungeon\Generation\RandomWalkGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

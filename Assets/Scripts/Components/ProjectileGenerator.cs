@@ -135,6 +135,7 @@ public class ProjectileGenerator : MonoBehaviour
         ParticleSystemRenderer renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.sharedMaterial = Resources.Load<Material>("Materials/Sprites");
         renderer.enableGPUInstancing = true;
+        renderer.sortingLayerName = "Projectile";
         #endregion
 
         #region Size Over Time

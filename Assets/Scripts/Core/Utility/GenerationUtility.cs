@@ -29,7 +29,7 @@ namespace ChaosRising
             return ret.ToArray();
         }
 
-        public static bool isEdge(Vector3Int position, Vector4 size)
+        public static bool IsEdge(Vector3Int position, Vector4 size)
         {
             if (
                 position.x == size.x ||
@@ -40,7 +40,7 @@ namespace ChaosRising
             else return false;
         }
 
-        public static bool isEdgeBounds(Vector3Int position, Vector4 size, Vector4 bounds)
+        public static bool IsEdgeBounds(Vector3Int position, Vector4 size, Vector4 bounds)
         {
             if (
                 position.x == size.x + bounds.x ||
@@ -49,6 +49,18 @@ namespace ChaosRising
                 position.y == (size.y + (size.w - 1)) - bounds.w
                 ) return true;
             else return false;
+        }
+    }
+
+    public class Vector2IntData<T>
+    {
+        public Vector2Int position;
+        public T data;
+
+        public Vector2IntData(Vector2Int position, T data)
+        {
+            this.position = position;
+            this.data = data;
         }
     }
 }
