@@ -1264,16 +1264,18 @@ MonoBehaviour:
   ground: {fileID: 1634073877}
   floor: {fileID: 946509981}
   wall: {fileID: 1238015728}
+  wallPrefab: {fileID: 8695956043046826730, guid: cdd1c64ffe1050d40b1f46c3f15d6c13, type: 3}
   enemyPrefab: {fileID: 4698235270669989712, guid: 079186af2c24309409434cdfae8e694c, type: 3}
-  groundTiles:
+  groundTileNames:
   - city_of_the_deserters_4
   - city_of_the_deserters_5
-  floorTiles:
+  floorTileNames:
   - city_of_the_deserters_0
   - city_of_the_deserters_1
-  wallTiles:
+  wallTileNames:
   - city_of_the_deserters_2
   - city_of_the_deserters_3
+  - city_of_the_deserters_6
   room:
     groundTiles:
     - city_of_the_deserters_0

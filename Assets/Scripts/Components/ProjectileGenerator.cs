@@ -16,11 +16,15 @@ public class ProjectileGenerator : MonoBehaviour
     private Color empty = new Color(0f, 0f, 0f, 0f);
     private Color full = new Color(1f, 1f, 1f, 1f);
 
+    private void Awake()
+    {
+        stats = GetComponentInParent<StatContainer>().stats;
+    }
+
     [System.Obsolete]
     private void Start()
     {
         emitters = new List<KeyValue<ParticleSystem>>();
-        stats = GetComponentInParent<StatContainer>().stats;
         mousePosition = MouseUtility.GetMousePosition();
 
         for (int i = 0; i < attacks.Length; ++i)

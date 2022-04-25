@@ -1,58 +1,40 @@
 ﻿using UnityEngine;
+using UnityEngine.U2D;
+using UnityEditor.Sprites;
 
 namespace ChaosRising
 {
     public class AssetManager
     {
-        private static readonly Sprite[] items = Resources.LoadAll<Sprite>("Spritesheets/items");
-        private static readonly Sprite[] projectiles = Resources.LoadAll<Sprite>("Spritesheets/projectiles");
-        private static readonly Sprite[] classes = Resources.LoadAll<Sprite>("Spritesheets/classes");
-        private static readonly Sprite[] enemies = Resources.LoadAll<Sprite>("Spritesheets/enemies");
-        private static readonly Sprite[] ui = Resources.LoadAll<Sprite>("Spritesheets/ui");
+        public static readonly SpriteAtlas tiles = Resources.Load<SpriteAtlas>("Atlasses/Tiles");
+        public static readonly SpriteAtlas items = Resources.Load<SpriteAtlas>("Atlasses/Items");
+        public static readonly SpriteAtlas characters = Resources.Load<SpriteAtlas>("Atlasses/Characters");
+        public static readonly SpriteAtlas projectiles = Resources.Load<SpriteAtlas>("Atlasses/Projectiles");
+        public static readonly SpriteAtlas ui = Resources.Load<SpriteAtlas>("Atlasses/UI");
+
+        public static Sprite GetTileSprite(string name)
+        {
+            return tiles.GetSprite(name);
+        }
 
         public static Sprite GetItemSprite(string name)
         {
-            foreach (Sprite sprite in items)
-            {
-                if (sprite.name == name) return sprite;
-            }
-            return null;
+            return items.GetSprite(name);
+        }
+
+        public static Sprite GetCharacterSprite(string name)
+        {
+            return characters.GetSprite(name);
         }
 
         public static Sprite GetProjectileSprite(string name)
         {
-            foreach (Sprite sprite in projectiles)
-            {
-                if (sprite.name == name) return sprite;
-            }
-            return null;
-        }
-
-        public static Sprite GetClassSprite(string name)
-        {
-            foreach (Sprite sprite in classes)
-            {
-                if (sprite.name == name) return sprite;
-            }
-            return null;
-        }
-
-        public static Sprite GetEnemySprite(string name)
-        {
-            foreach (Sprite sprite in enemies)
-            {
-                if (sprite.name == name) return sprite;
-            }
-            return null;
+            return projectiles.GetSprite(name);
         }
 
         public static Sprite GetUISprite(string name)
         {
-            foreach (Sprite sprite in ui)
-            {
-                if (sprite.name == name) return sprite;
-            }
-            return null;
+            return ui.GetSprite(name);
         }
     }
 }

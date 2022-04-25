@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Items
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -284584540, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1921012298, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -782395173, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1933539176, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1942990189, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -467971761, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -191613633, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 387880506, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1389611323, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1792344431, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -330284831, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1291016610, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 781319282, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1285887811, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 155440283, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1626576336, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1331231743, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1756441832, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 619544469, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -146362287, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 664946356, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -2085676718, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1614741677, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 893479904, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 313723462, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 873433115, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 747150260, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1558831907, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 962445557, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1543687189, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1494761529, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1427424891, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 950899676, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -140409837, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1117467705, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -2108627351, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -2143930663, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1637154868, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1343706517, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1835542253, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1792911249, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1784714965, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -238024001, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 723497655, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 120627347, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: -1552691640, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  - {fileID: 1325697951, guid: 43f29cb48374ffd43a2e9272ec27f8dd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - malice
+  - obsidian_dagger
+  - cactus_dirk
+  - succulent_ring
+  - items_4
+  - items_5
+  - shrieking_ripper
+  - items_6
+  - items_7
+  - items_8
+  - items_9
+  - items_11
+  - items_10
+  - items_26
+  - items_17
+  - items_27
+  - items_16
+  - items_24
+  - items_15
+  - items_25
+  - items_39
+  - items_14
+  - items_38
+  - items_23
+  - items_20
+  - items_19
+  - items_18
+  - items_31
+  - items_30
+  - items_33
+  - items_29
+  - items_35
+  - items_34
+  - items_37
+  - items_36
+  - ghastly_cutlass
+  - vulcans_eruption
+  - pestilent_peignoir
+  - prickly_poncho
+  - cactacid
+  - plaguedoctors_skull
+  - items_40
+  - items_41
+  - items_42
+  - items_43
+  - kingforge_sword
+  - inquisition
+  m_RenderDataMap: {}
+  m_Tag: Items
+  m_IsVariant: 0

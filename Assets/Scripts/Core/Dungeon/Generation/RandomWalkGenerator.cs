@@ -37,13 +37,33 @@ public class RandomWalkGenerator
         
         return path;
     }
+
+    public HashSet<Vector2IntData<bool>> GetWallPositions(HashSet<Vector2IntData<bool>> floorPositions)
+    {
+        HashSet<Vector2IntData<bool>> wallPositions = new HashSet<Vector2IntData<bool>>();
+
+        Vector2IntData<bool> neighbor;
+        foreach (Vector2IntData<bool> position in floorPositions)
+        {
+            foreach(Vector2Int direction in Direction.Cardinal)
+            {
+                neighbor = new Vector2IntData<bool>(position.position + direction, false);
+                if (!floorPositions.Contains(neighbor))
+                {
+                    wallPositions.Add(neighbor);
+                }
+            }
+        }
+
+        return wallPositions;
+    }
 }
 
 public class Direction
 {
     private static Vector2Int None = new Vector2Int();
 
-    private static List<Vector2Int> Cardinal = new List<Vector2Int>
+    public static List<Vector2Int> Cardinal = new List<Vector2Int>
     {
         new Vector2Int(0, 1),
         new Vector2Int(0, -1),
@@ -51,9 +71,7 @@ public class Direction
         new Vector2Int(-1, 0)
     };
 
-
-    // Intercardinal
-    private static List<Vector2Int> Intercardinal = new List<Vector2Int>
+    public static List<Vector2Int> Intercardinal = new List<Vector2Int>
     {
         new Vector2Int(1, 1),
         new Vector2Int(-1, 1),
@@ -61,7 +79,7 @@ public class Direction
         new Vector2Int(-1, -1)
     };
 
-    private static List<Vector2Int> All = new List<Vector2Int>()
+    public static List<Vector2Int> All = new List<Vector2Int>()
     {
         new Vector2Int(0, 1),
         new Vector2Int(0, -1),
